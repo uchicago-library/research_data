@@ -1,0 +1,6 @@
+autopep8
+black
+curlylint
+djhtml
+flake8
+isort

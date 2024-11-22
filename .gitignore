@@ -1,0 +1,27 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+src
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# Wagtail specific
+/media/
+/static/
+*.log
+*/settings/local.py
+
+# IDEs and editors
+.vscode/
+*~
+*.swp
+*.swo

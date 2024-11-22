@@ -1,0 +1,40 @@
+{% extends "base/base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-news-index-page{% endblock %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+{% block content %}
+    <ul>
+        {% for child in page_obj %}
+            <li>
+                <a href="{{ child.url }}">
+                    {% if child.thumbnail %}
+                        {% picture child.thumbnail format-{avif,webp,jpeg} width-300 %}
+                    {% endif %}
+                    {{ child.title }}
+                </a>
+            </li>
+        {% empty %}
+            <li>News unavailable.</li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock content %}

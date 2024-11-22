@@ -1,0 +1,4 @@
+Django>=4.2,<5.1
+wagtail>=6.3,<6.4
+django-compressor
+django-libsass

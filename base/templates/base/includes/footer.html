@@ -1,0 +1,20 @@
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+<footer>
+    {% get_site_root as site_root %}
+    {% with footer_logo_link=settings.base.FooterLogo.link footer_logo_img=settings.base.FooterLogo.image %}
+        {% if footer_logo_link and footer_logo_img %}
+            <a href="{{footer_logo_link}}">{% picture footer_logo_img format-{avif,webp,jpeg} width-{400,800} sizes="80vw" %}</a>
+        {% elif footer_logo_img %}
+            {% picture footer_logo_img format-{avif,webp,jpeg} width-{400,800} sizes="80vw" %}
+        {% endif %}
+    {% endwith %}
+
+    {% if site_root.get_children.live.in_menu %}
+        <ul>
+            {% for menuitem in site_root.get_children.live.in_menu %}
+                <li><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</footer>

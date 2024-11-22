@@ -1,0 +1,19 @@
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+<header>
+    {% get_site_root as site_root %}
+    <nav>
+        {% with main_logo_link=settings.base.MainLogo.link main_logo_img=settings.base.MainLogo.image %}
+            {% if main_logo_link and main_logo_img %}
+                <a href="{{main_logo_link}}">{% picture main_logo_img format-{avif,webp,jpeg} width-{400,800} sizes="80vw" %}</a>
+            {% elif main_logo_img %}
+                {% picture main_logo_img format-{avif,webp,jpeg} width-{400,800} sizes="80vw" %}
+            {% endif %}
+        {% endwith %}
+        <p>
+            {% for menuitem in site_root.get_children.live.in_menu %}
+                <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+            {% endfor %}
+        </p>
+    </nav>
+</header>
