@@ -20,7 +20,7 @@ Password: `test`
 
 ### Generating fixtures
 If you make a change in the dev database that you'd like to maintain, you'll need to generate fixtures. This will also need to be done when you make changes to the models and new migrations.
-- `./manage.py dumpdata --natural-foreign --exclude wagtailsearch > dev/fixtures/dev.json`
+- `./manage.py dumpdata --natural-foreign --natural-primary --exclude wagtailsearch > dev/fixtures/dev.json`
 
 ## Linting
 ### Python
