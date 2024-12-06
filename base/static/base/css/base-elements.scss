@@ -1,6 +1,9 @@
 header {
-    .nav-link {
+    .nav-link{
         color: var(--bs-navbar-active-color);
+        &.active{
+            border-bottom: 2px solid white;
+        }
     }
 }
 
