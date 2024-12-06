@@ -1,6 +1,6 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
-<footer class="footer mt-auto py-3 bg-body-primary">
+<footer class="footer mt-auto py-3 bg-dark">
     <div class="container-sm">
         <div class="row align-items-center">
             <div class="col-md-6 mb-3 mb-md-0 text-center text-md-start">
@@ -13,22 +13,17 @@
                     {% endif %}
                 {% endwith %}
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#">Privacy Policy</a></li>
-                    <li class="nav-item mb-2"><a href="#">Contact Us</a></li>
-                    <li class="nav-item mb-2"><a href="#">Staff Login</a></li>
-                </ul>
-                <ul class="list-group">
-                    <li class="list-group-item  list-group-item-primary"><a href="#">Privacy Policy</a></li>
-                    <li class="list-group-item text-bg-primary"><a href="#">Contact Us</a></li>
-                    <li class="list-group-item"><a href="#">Staff Login</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Privacy Policy</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Contact Us</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Staff Login</a></li>
                 </ul>
 
             </div>
             <div class="col-md-6">
                 {% if site_root.get_children.live.in_menu %}
-                    <ul class="list-inline mb-0 text-md-end text-center text-md-end">
+                    <ul class="nav flex-column">
                         {% for menuitem in site_root.get_children.live.in_menu %}
-                            <li class="list-inline-item"><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
+                            <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
                         {% endfor %}
                     </ul>
                 {% endif %}

@@ -21,8 +21,8 @@
             {% endif %}
         </title>
         {% compress css %}
+        <link href="{% static "base/css/base.scss" %}" rel="stylesheet" type="text/x-scss"/>
             <link href="{% static "base/css/base-elements.scss" %}" rel="stylesheet" type="text/x-scss"/>
-            <link href="{% static "base/css/base.scss" %}" rel="stylesheet" type="text/x-scss"/>
         {% endcompress %}
     </head>
     <body class="d-flex flex-column h-100 {% block body_class %}{% endblock %}">
