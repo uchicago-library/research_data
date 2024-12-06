@@ -26,6 +26,12 @@
     // $headings-line-height:        1.2 !default;
     // $headings-color:              inherit !default;
 
+    $focus-ring-width:      .25rem;
+    $focus-ring-opacity:    .85;
+    $focus-ring-color:      rgba($info, $focus-ring-opacity);
+    $focus-ring-blur:       0;
+    $focus-ring-box-shadow: 0 0 $focus-ring-blur $focus-ring-width $focus-ring-color;
+
     @import "../bootstrap/scss/bootstrap";
 
 

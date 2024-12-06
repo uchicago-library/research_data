@@ -1,3 +1,6 @@
+a{
+    @extend .focus-ring !optional;
+}
 header {
     .nav-link{
         color: var(--bs-navbar-active-color);

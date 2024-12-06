@@ -20,6 +20,12 @@
                 - {{ current_site.site_name }}
             {% endif %}
         </title>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static "base/favicon/apple-touch-icon.png" %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static "base/favicon/favicon-32x32.png" %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static "base/favicon/favicon-16x16.png" %}">
+        <link rel="manifest" "{% static "base/favicon/site.webmanifest" %}">
+
         {% compress css %}
             <link href="{% static "base/css/base.scss" %}" rel="stylesheet" type="text/x-scss"/>
             <link href="{% static "base/css/base-elements.scss" %}" rel="stylesheet" type="text/x-scss"/>
@@ -30,7 +36,7 @@
         <main class="flex-shrink-0">
             <div class="container-sm py-5">
                 {% if page.is_site_root %}
-                    <h1 aria-label="{{ page.title }}"></h1>
+                    <h1 class="visually-hidden">{{ page.title }}</h1>
                 {% else %}
                     <h1>{{ page.title }}</h1>
                 {% endif %}
