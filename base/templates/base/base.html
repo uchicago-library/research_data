@@ -1,7 +1,7 @@
 {% load wagtailcore_tags static compress %}
 {% wagtail_site as current_site %}
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en" class="h-100" data-bs-theme="light">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +21,7 @@
             {% endif %}
         </title>
         {% compress css %}
-        <link href="{% static "base/css/base.scss" %}" rel="stylesheet" type="text/x-scss"/>
+            <link href="{% static "base/css/base.scss" %}" rel="stylesheet" type="text/x-scss"/>
             <link href="{% static "base/css/base-elements.scss" %}" rel="stylesheet" type="text/x-scss"/>
         {% endcompress %}
     </head>
@@ -38,5 +38,11 @@
         {% endfor %}
         {% block content %}{% endblock content %}
         {% include "base/includes/footer.html" %}
+
+
+        <link href="{% static "base/css/base.scss" %}" rel="stylesheet" type="text/x-scss"/>
+        {# Add popper if required #}
+        {# <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script> #}
+        <script src="{% static "base/bootstrap/dist/js/bootstrap.min.js" %}" ></script>
     </body>
 </html>

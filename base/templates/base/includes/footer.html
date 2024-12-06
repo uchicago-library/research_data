@@ -1,25 +1,22 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
-<footer class="footer mt-auto py-3 bg-dark">
+<footer class="footer mt-auto py-3 bg-dark text-bg-dark">
     <div class="container-sm">
-        <div class="row align-items-center">
-            <div class="col-md-6 mb-3 mb-md-0 text-center text-md-start">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 py-3">
+
+            <div class="col my-3">
                 {% get_site_root as site_root %}
                 {% with footer_logo_link=settings.base.FooterLogo.link footer_logo_img=settings.base.FooterLogo.image %}
                     {% if footer_logo_link and footer_logo_img %}
-                        <a href="{{footer_logo_link}}">{% picture footer_logo_img format-{avif,webp,jpeg} width-{200} %}</a>
+                        <a href="{{footer_logo_link}}">{% picture footer_logo_img format-{avif,webp,jpeg} width-{200} alt="University of Chicago Logo" %}</a>
                     {% elif footer_logo_img %}
-                        {% picture footer_logo_img format-{avif,webp,jpeg} width-{200} %}
+                        {% picture footer_logo_img format-{avif,webp,jpeg} width-{200} alt="University of Chicago Logo" %}
                     {% endif %}
                 {% endwith %}
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Privacy Policy</a></li>
-                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Contact Us</a></li>
-                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Staff Login</a></li>
-                </ul>
-
             </div>
-            <div class="col-md-6">
+       
+            <div class="col my-3 order-md-last">
+                <h5>Research Data</h5>
                 {% if site_root.get_children.live.in_menu %}
                     <ul class="nav flex-column">
                         {% for menuitem in site_root.get_children.live.in_menu %}
@@ -27,7 +24,16 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
+            </div>    
+
+            <div class="col my-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Privacy Policy</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Contact Us</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Staff Login</a></li>
+                </ul>
             </div>
+
         </div>
     </div>
 </footer>

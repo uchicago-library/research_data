@@ -2,18 +2,28 @@
 
 <header>
     {% get_site_root as site_root %}
-    <nav>
-        {% with main_logo_link=settings.base.MainLogo.link main_logo_img=settings.base.MainLogo.image %}
-            {% if main_logo_link and main_logo_img %}
-                <a href="{{main_logo_link}}">{% picture main_logo_img format-{avif,webp,jpeg} width-{400,800} sizes="80vw" %}</a>
-            {% elif main_logo_img %}
-                {% picture main_logo_img format-{avif,webp,jpeg} width-{400,800} sizes="80vw" %}
-            {% endif %}
-        {% endwith %}
-        <p>
-            {% for menuitem in site_root.get_children.live.in_menu %}
-                <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
-            {% endfor %}
-        </p>
+    <nav class="navbar navbar-expand-md bg-primary" data-bs-theme="dark">
+        <div class="container-sm">
+            {% with main_logo_link=settings.base.MainLogo.link main_logo_img=settings.base.MainLogo.image %}
+                {% if main_logo_link and main_logo_img %}
+                    <a class="navbar-brand" href="{{main_logo_link}}">{% picture main_logo_img format-{avif,webp,jpeg} width-{200} alt="University of Chicago Logo" %}</a>
+                {% elif main_logo_img %}
+                    {% picture main_logo_img format-{avif,webp,jpeg} width-{200} alt="University of Chicago Logo" %}
+                {% endif %}
+            {% endwith %}
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end text-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% for menuitem in site_root.get_children.live.in_menu %}
+                        <li class="nav-item">   
+                            <a class="nav-link" href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </nav>
 </header>
