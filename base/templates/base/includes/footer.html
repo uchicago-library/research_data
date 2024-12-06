@@ -1,20 +1,38 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
-<footer>
-    {% get_site_root as site_root %}
-    {% with footer_logo_link=settings.base.FooterLogo.link footer_logo_img=settings.base.FooterLogo.image %}
-        {% if footer_logo_link and footer_logo_img %}
-            <a href="{{footer_logo_link}}">{% picture footer_logo_img format-{avif,webp,jpeg} width-{400,800} sizes="80vw" %}</a>
-        {% elif footer_logo_img %}
-            {% picture footer_logo_img format-{avif,webp,jpeg} width-{400,800} sizes="80vw" %}
-        {% endif %}
-    {% endwith %}
+<footer class="footer mt-auto py-3 bg-body-primary">
+    <div class="container-sm">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-3 mb-md-0 text-center text-md-start">
+                {% get_site_root as site_root %}
+                {% with footer_logo_link=settings.base.FooterLogo.link footer_logo_img=settings.base.FooterLogo.image %}
+                    {% if footer_logo_link and footer_logo_img %}
+                        <a href="{{footer_logo_link}}">{% picture footer_logo_img format-{avif,webp,jpeg} width-{200} %}</a>
+                    {% elif footer_logo_img %}
+                        {% picture footer_logo_img format-{avif,webp,jpeg} width-{200} %}
+                    {% endif %}
+                {% endwith %}
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#">Privacy Policy</a></li>
+                    <li class="nav-item mb-2"><a href="#">Contact Us</a></li>
+                    <li class="nav-item mb-2"><a href="#">Staff Login</a></li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item  list-group-item-primary"><a href="#">Privacy Policy</a></li>
+                    <li class="list-group-item text-bg-primary"><a href="#">Contact Us</a></li>
+                    <li class="list-group-item"><a href="#">Staff Login</a></li>
+                </ul>
 
-    {% if site_root.get_children.live.in_menu %}
-        <ul>
-            {% for menuitem in site_root.get_children.live.in_menu %}
-                <li><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+            </div>
+            <div class="col-md-6">
+                {% if site_root.get_children.live.in_menu %}
+                    <ul class="list-inline mb-0 text-md-end text-center text-md-end">
+                        {% for menuitem in site_root.get_children.live.in_menu %}
+                            <li class="list-inline-item"><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </footer>
