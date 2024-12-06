@@ -1,11 +1,22 @@
+
+:root,
+[data-bs-theme=light] {
+    --bs-link-color: #3EB1C8;
+    --bs-link-color-rgb: 62, 177, 200;
+    --bs-link-color: #007396;
+    --bs-link-color-rgb: 0, 115, 150;
+}
+
 a{
     @extend .focus-ring !optional;
 }
 header {
     .nav-link{
-        color: var(--bs-navbar-active-color);
-        &.active{
-            border-bottom: 2px solid white;
+        color: rgba(255, 255, 255, 0.85);
+        @media (min-width: 768px) {
+            &.active{
+                border-bottom: 2px solid white;
+            }
         }
     }
 }
