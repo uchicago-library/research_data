@@ -34,7 +34,11 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
+        {% block content %}
+            {% for block in page.body %}
+                {{ block }}
+            {% endfor %}
+        {% endblock content %}
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/research_data.js' %}"></script>

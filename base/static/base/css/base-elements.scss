@@ -4,6 +4,11 @@ a{
 header {
     .nav-link{
         color: rgba(255, 255, 255, 0.85);
+        border-color: rgba(255, 255, 255, 0.35);
+        &:hover{
+            border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+            color: white;
+        }
         @media (min-width: 768px) {
             &.active{
                 border-bottom: 2px solid white;

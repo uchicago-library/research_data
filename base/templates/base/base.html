@@ -45,10 +45,11 @@
                 {% else %}
                     <h1>{{ page.title }}</h1>
                 {% endif %}
-                {% for block in page.body %}
-                    {{ block }}
-                {% endfor %}
-                {% block content %}{% endblock content %}
+                {% block content %}
+                    {% for block in page.body %}
+                        {{ block }}
+                    {% endfor %}
+                {% endblock content %}
             </div>
         </main>
         

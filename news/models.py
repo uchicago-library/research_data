@@ -1,7 +1,7 @@
 from base.models import AbstractBasePage
 from django.core.paginator import Paginator
 from django.db import models
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.fields import RichTextField
 
@@ -40,20 +40,31 @@ class NewsIndexPage(AbstractBasePage):
 
 
 class NewsPage(AbstractBasePage):
-    excerpt = RichTextField(blank=True, features=['bold', 'italic', 'link'])
+    excerpt = RichTextField(
+        blank=True, 
+        features=['bold', 'italic', 'link'],
+        help_text="Text to display on the news index page. Defaults to a truncation of the body.",
+    )
     thumbnail = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Image to display for the story",
+        help_text="Image to display for the story. Alt text is defined when editing the image itself.",
     )
+    thumbnail_caption = models.CharField(max_length=100, blank=True)
     content_panels = (
         AbstractBasePage.content_panels[:1] + 
         [
             FieldPanel('excerpt'),
-            FieldPanel('thumbnail'),
+            MultiFieldPanel(
+                [
+                    FieldPanel('thumbnail'),
+                    FieldPanel('thumbnail_caption'),
+                ],
+                heading='Thumbnail',
+            ),
         ] + 
         AbstractBasePage.content_panels[1:]
     )
