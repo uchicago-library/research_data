@@ -16,6 +16,7 @@ header {
 }
 #news-listing{
     a{
+        display: block;
         text-decoration: none;
         color: var(--bs-body-color);
         &:hover{
