@@ -1,12 +1,3 @@
-
-:root,
-[data-bs-theme=light] {
-    --bs-link-color: #3EB1C8;
-    --bs-link-color-rgb: 62, 177, 200;
-    --bs-link-color: #007396;
-    --bs-link-color-rgb: 0, 115, 150;
-}
-
 a{
     @extend .focus-ring !optional;
 }
@@ -23,10 +14,13 @@ header {
 .smaller-text{
     font-size: smaller;
 }
-
-// footer {
-//     background-color: #212529;
-//     a {
-//         color: #fff;
-//     }
-// }
+#news-listing{
+    a{
+        text-decoration: none;
+        color: var(--bs-body-color);
+        &:hover{
+            text-decoration: underline;
+            color: var(--bs-link-hover-color);
+        }
+    }
+}

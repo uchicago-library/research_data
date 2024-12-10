@@ -1,0 +1,37 @@
+$primary: #800000;
+    $secondary: #737373; // Custom secondary color
+    $success: #789D4A; // Custom success color
+    $info: #17a2b8; // Custom info color
+    $warning: #ffc107; // Custom warning color
+    $danger: #dc3545; // Custom danger color
+    $light: #f8f9fa; // Custom light color
+    $dark: #343a40; // Custom dark color
+
+    $link-color: #007396;
+
+    $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+    
+    $h1-font-size: $font-size-base * 3 !default;
+    $h2-font-size: $font-size-base * 2.5 !default;
+    $h3-font-size: $font-size-base * 2 !default;
+    $h4-font-size: $font-size-base * 1.6 !default;
+    $h5-font-size: $font-size-base * 1.3 !default;
+    $h6-font-size: $font-size-base !default;
+    // $headings-margin-bottom:      $spacer * .5 !default;
+    // $headings-font-family:        null !default;
+    // $headings-font-style:         null !default;
+    // $headings-font-weight:        500 !default;
+    // $headings-line-height:        1.2 !default;
+    // $headings-color:              inherit !default; 
+
+    $focus-ring-width:      .25rem;
+    $focus-ring-opacity:    .85;
+    $focus-ring-color:      rgba($info, $focus-ring-opacity);
+    $focus-ring-blur:       0;
+    $focus-ring-box-shadow: 0 0 $focus-ring-blur $focus-ring-width $focus-ring-color;
+
+    $pagination-active-color:           var(--bs-body-color);
+    $pagination-active-bg:              var(--bs-body-bg);
+    $pagination-active-border-color:    var(--bs-border-color);
+
+    $breadcrumb-divider: quote(">");

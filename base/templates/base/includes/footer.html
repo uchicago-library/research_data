@@ -16,9 +16,9 @@
             </div>
        
             <div class="col my-3 order-md-last">
-                <h5>Research Data</h5>
+                <h2 class="h5">Research Data</h2>
                 {% if site_root.get_children.live.in_menu %}
-                    <ul class="nav flex-column">
+                    <ul class="nav flex-column" role="navigation">
                         {% for menuitem in site_root.get_children.live.in_menu %}
                             <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
                         {% endfor %}
