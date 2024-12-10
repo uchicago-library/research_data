@@ -49,8 +49,11 @@ class NewsPage(AbstractBasePage):
         related_name="+",
         help_text="Image to display for the story",
     )
-
-    content_panels = AbstractBasePage.content_panels + [
-        FieldPanel('thumbnail'),
-        FieldPanel('excerpt'),
-    ]
+    content_panels = (
+        AbstractBasePage.content_panels[:1] + 
+        [
+            FieldPanel('excerpt'),
+            FieldPanel('thumbnail'),
+        ] + 
+        AbstractBasePage.content_panels[1:]
+    )
