@@ -1,0 +1,27 @@
+a{
+    @extend .focus-ring !optional;
+}
+header {
+    .nav-link{
+        color: rgba(255, 255, 255, 0.85);
+        @media (min-width: 768px) {
+            &.active{
+                border-bottom: 2px solid white;
+            }
+        }
+    }
+}
+.smaller-text{
+    font-size: smaller;
+}
+#news-listing{
+    a{
+        display: block;
+        text-decoration: none;
+        color: var(--bs-body-color);
+        &:hover{
+            text-decoration: underline;
+            color: var(--bs-link-hover-color);
+        }
+    }
+}
