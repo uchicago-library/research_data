@@ -1,9 +1,7 @@
 from base.models import AbstractBasePage
 from django.db import models
-from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import RichTextField
-
 
 
 class HomePage(AbstractBasePage):
@@ -23,8 +21,8 @@ class HomePage(AbstractBasePage):
     )
 
     content_panels = (
-        AbstractBasePage.content_panels[:1] + 
-        [
+        AbstractBasePage.content_panels[:1]
+        + [
             MultiFieldPanel(
                 [
                     FieldPanel('cta_heading'),
@@ -35,6 +33,12 @@ class HomePage(AbstractBasePage):
                 ],
                 heading='Call to Action Panel',
             ),
-        ] + 
-        AbstractBasePage.content_panels[1:]
+        ]
+        + AbstractBasePage.content_panels[1:]
     )
+
+    subpage_types = [
+        'base.StandardPage',
+        'news.NewsIndexPage',
+        'services.ServicesListingPage',
+    ]

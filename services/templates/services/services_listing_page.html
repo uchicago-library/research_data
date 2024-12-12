@@ -1,0 +1,35 @@
+{% extends "base/base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block body_class %}template-services-listing-page{% endblock %}
+
+{% block extra_css %}{% endblock extra_css %}
+{% block content %}
+    <form method="get" action="{% pageurl page %}">
+        <input type="text" name="q" placeholder="Search services...">
+        <button type="submit">Search</button>
+    </form>
+    {% if phases %}
+        <ul>
+            {% for phase in phases %}
+                <li class="filter {{ phase.slug }}"><a href="{% pageurl page %}phase/{{ phase.slug }}">{{ phase.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if services %}
+        <ul>
+            {% for page in services %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a>
+                    {% if page.service_category_additions.all %}
+                        <ul>
+                            {% for service_addition in page.service_category_additions.all %}
+                                <li><a href="{% pageurl page.get_parent %}category/{{ service_addition.category.slug }}">{{ service_addition.category.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock content %}
