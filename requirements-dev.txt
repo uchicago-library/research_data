@@ -4,3 +4,4 @@ curlylint
 djhtml
 flake8
 isort
+pandas

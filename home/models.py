@@ -4,4 +4,8 @@ from wagtail.models import Page
 
 
 class HomePage(AbstractBasePage):
-    subpage_types = ['base.StandardPage', 'news.NewsIndexPage']
+    subpage_types = [
+        'base.StandardPage',
+        'news.NewsIndexPage',
+        'services.ServicesListingPage',
+    ]
