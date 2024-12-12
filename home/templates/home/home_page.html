@@ -1,4 +1,4 @@
-{% extends "base/base.html" %}
+{% extends "base/base-full-width.html" %}
 {% load static %}
 
 {% block body_class %}template-homepage{% endblock %}
@@ -10,4 +10,30 @@ Comment tag
 {% endcomment %}
 {% endblock extra_css %}
 
-{% block content %}{% endblock content %}
+
+{% block content %}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h2 class="fw-light">{{page.cta_heading}}</h2>
+            <p class="lead text-body-secondary">{{page.cta_text|safe}}</p>
+            <p class="lead text-body-secondary">{{page.cta_background_image.url}}</p>
+            <p>
+                <a href="{{page.cta_button_link}}" class="btn btn-primary my-2">{{page.cta_button_text}}</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% comment %} 
+cta_heading
+cta_text
+cta_button_text
+cta_button_link
+cta_background_image
+{% endcomment %}
+<div class="container-sm py-5">
+    {% for block in page.body %}
+    {{ block }}
+    {% endfor %}
+</div>
+{% endblock content %}
