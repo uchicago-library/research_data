@@ -5,6 +5,18 @@
 
 {% block extra_css %}{% endblock extra_css %}
 {% block content %}
+    <form method="get" action="{% pageurl page %}">
+        <input type="text" name="q" placeholder="Search services...">
+        <button type="submit">Search</button>
+    </form>
+    {% if phases %}
+        <ul>
+            {% for phase in phases %}
+                <li class="filter {{ phase.slug }}"><a href="{% pageurl page %}phase/{{ phase.slug }}">{{ phase.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     {% if services %}
         <ul>
             {% for page in services %}

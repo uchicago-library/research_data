@@ -5,6 +5,7 @@ from wagtail.blocks import CharBlock, RichTextBlock, StreamBlock
 from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
 from wagtail.fields import StreamField
 from wagtail.models import Page
+from wagtail.search import index
 
 
 class LinkFields(models.Model):
@@ -116,6 +117,10 @@ class AbstractBasePage(Page):
     )
 
     content_panels = Page.content_panels + [FieldPanel('body')]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+    ]
 
 
 class StandardPage(AbstractBasePage):

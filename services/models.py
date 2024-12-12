@@ -5,6 +5,7 @@ from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, path
 from wagtail.models import Orderable
+from wagtail.search.utils import parse_query_string
 from wagtail.snippets.models import register_snippet
 
 
@@ -272,7 +273,15 @@ class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
         context = super(ServicesListingPage, self).get_context(request)
 
         services = self.get_children().live().type(ServicePage).specific()
+        phases = ResearchLifecyclePhase.objects.all()
+
+        query = request.GET.get('q')
+
+        if query:
+            query_filters, query = parse_query_string(query, operator='or')
+            services = services.search(query)
 
         context['services'] = services
+        context['phases'] = phases
 
         return context
