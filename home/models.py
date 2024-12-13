@@ -1,7 +1,7 @@
-from base.models import AbstractBasePage
+from base.models import AbstractBasePage, SectionBlock
 from django.db import models
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
-from wagtail.fields import RichTextField
+from wagtail.fields import RichTextField, StreamField
 
 
 class HomePage(AbstractBasePage):
@@ -19,6 +19,12 @@ class HomePage(AbstractBasePage):
         related_name="+",
         help_text="Image to display as a background for the Call to Action. Mind the contrast, and for different screen sizes.",
     )
+    sections = StreamField(
+        [
+            ('section', SectionBlock()),
+        ],
+        blank=True,
+    )
 
     content_panels = (
         AbstractBasePage.content_panels[:1]
@@ -35,6 +41,9 @@ class HomePage(AbstractBasePage):
             ),
         ]
         + AbstractBasePage.content_panels[1:]
+        + [
+            FieldPanel('sections'),
+        ]
     )
 
     subpage_types = [

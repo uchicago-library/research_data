@@ -1,5 +1,5 @@
 {% extends "base/base.html" %}
-{% load static %}
+{% load static wagtailcore_tags %}
 
 {% block body_class %}template-standardpage{% endblock %}
 
@@ -9,4 +9,5 @@
     {% for block in page.body %}
         {{ block }}
     {% endfor %}
+    {% include "services/includes/services.html" %}
 {% endblock content %}

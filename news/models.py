@@ -41,7 +41,7 @@ class NewsIndexPage(AbstractBasePage):
 
 class NewsPage(AbstractBasePage):
     excerpt = RichTextField(
-        blank=True, 
+        blank=True,
         features=['bold', 'italic', 'link'],
         help_text="Text to display on the news index page. Defaults to a truncation of the body.",
     )
@@ -55,8 +55,8 @@ class NewsPage(AbstractBasePage):
     )
     thumbnail_caption = models.CharField(max_length=100, blank=True)
     content_panels = (
-        AbstractBasePage.content_panels[:1] + 
-        [
+        AbstractBasePage.content_panels[:1]
+        + [
             FieldPanel('excerpt'),
             MultiFieldPanel(
                 [
@@ -65,6 +65,6 @@ class NewsPage(AbstractBasePage):
                 ],
                 heading='Thumbnail',
             ),
-        ] + 
-        AbstractBasePage.content_panels[1:]
+        ]
+        + AbstractBasePage.content_panels[1:]
     )
