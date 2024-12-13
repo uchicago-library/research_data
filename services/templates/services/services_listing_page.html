@@ -5,6 +5,9 @@
 
 {% block extra_css %}{% endblock extra_css %}
 {% block content %}
+    {% for block in page.body %}
+        {{ block }}
+    {% endfor %}
     <form method="get" action="{% pageurl page %}">
         <input type="text" name="q" placeholder="Search services...">
         <button type="submit">Search</button>
@@ -17,19 +20,6 @@
         </ul>
     {% endif %}
 
-    {% if services %}
-        <ul>
-            {% for page in services %}
-                <li><a href="{{ page.url }}">{{ page.title }}</a>
-                    {% if page.service_category_additions.all %}
-                        <ul>
-                            {% for service_addition in page.service_category_additions.all %}
-                                <li><a href="{% pageurl page.get_parent %}category/{{ service_addition.category.slug }}">{{ service_addition.category.name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    {% include "services/includes/services.html" %}
+
 {% endblock content %}

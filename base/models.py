@@ -1,7 +1,14 @@
 # from django.db import models
 from django.db import models
-from wagtail.admin.panels import FieldPanel, PageChooserPanel
-from wagtail.blocks import CharBlock, RichTextBlock, StreamBlock
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, PageChooserPanel
+from wagtail.blocks import (
+    CharBlock,
+    IntegerBlock,
+    PageChooserBlock,
+    RichTextBlock,
+    StreamBlock,
+    StructBlock,
+)
 from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
 from wagtail.fields import StreamField
 from wagtail.models import Page
@@ -107,6 +114,21 @@ class DefaultBodyFields(StreamBlock):
         required = False
 
 
+class SectionBlock(StructBlock):
+    """
+    Block type for streaming in dynamic page sections.
+    Will show a smattering of child pages for whatever
+    parent page is selected.
+    """
+
+    heading = CharBlock(required=True, help_text='Section heading')
+    page = PageChooserBlock(required=True)
+    count = IntegerBlock(required=True, help_text='Number of child pages to show')
+
+    class Meta:
+        template = 'base/blocks/section_block.html'
+
+
 class AbstractBasePage(Page):
     class Meta:
         abstract = True
@@ -114,6 +136,15 @@ class AbstractBasePage(Page):
     body = StreamField(
         DefaultBodyFields(),
         blank=True,
+    )
+
+    show_nested_children = models.BooleanField(
+        default=False, help_text="Check this to display nested child pages."
+    )
+
+    nested_children_depth = models.PositiveIntegerField(
+        default=1,
+        help_text="Number of levels deep to show child pages (1 means immediate children only).",
     )
 
     content_panels = Page.content_panels + [FieldPanel('body')]
@@ -124,4 +155,45 @@ class AbstractBasePage(Page):
 
 
 class StandardPage(AbstractBasePage):
-    pass
+    # Needs to stay here, unfortunately
+    from services.models import ResearchLifecyclePhase
+
+    associated_research_lifecycle_phase = models.ForeignKey(
+        ResearchLifecyclePhase,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    content_panels = AbstractBasePage.content_panels + [
+        MultiFieldPanel(
+            [
+                FieldPanel('show_nested_children'),
+                FieldPanel('nested_children_depth'),
+            ],
+            heading='Dynamic Page Listing',
+        ),
+        FieldPanel('associated_research_lifecycle_phase'),
+    ]
+
+    def get_context(self, request):
+        """
+        Override the page object's get context method.
+        """
+        # Needs to stay here, unfortunately
+        from services.models import ServicePage
+
+        context = super(StandardPage, self).get_context(request)
+
+        services = None
+        if self.associated_research_lifecycle_phase:
+            slug = self.associated_research_lifecycle_phase.slug
+            filter_param = 'research_lifecycle_phase_additions__phase__slug'
+            services = (
+                ServicePage.objects.live().filter(**{filter_param: slug}).distinct()
+            )
+
+        context['services'] = services
+
+        return context

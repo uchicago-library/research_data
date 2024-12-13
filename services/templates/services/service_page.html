@@ -1,7 +1,27 @@
 {% extends "base/base.html" %}
-{% load static %}
+{% load static wagtailcore_tags %}
 
 {% block body_class %}template-service-page{% endblock %}
 
 {% block extra_css %}{% endblock extra_css %}
-{% block content %}{% endblock content %}
+{% block content %}
+    {% for block in page.body %}
+        {{ block }}
+    {% endfor %}
+    {% if page.service_url %}
+        <div>
+            <a href="{{ page.service_url }}">{{clean_url}}</a>
+        </div>
+        <a class="btn btn-primary" href="{{ page.service_url }}" role="button">Go to {{page.title}}</a>
+    {% endif %}
+    {% with parent_url=page.get_parent %}
+        {% pageurl parent_url as parent_page_url %}
+        {% if page.service_category_additions.all %}
+            <ul>
+                {% for service_addition in page.service_category_additions.all %}
+                    <li class="category {{ service_addition.category.slug }}"><a href="{{ parent_page_url }}category/{{ service_addition.category.slug }}">{{ service_addition.category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% load wagtailcore_tags %}
+{% if services %}
+    <ul>
+        {% for page in services %}
+            <li><a href="{{ page.url }}">{{ page.title }}</a>
+                {% if page.service_category_additions.all %}
+                    <ul>
+                        {% for service_addition in page.service_category_additions.all %}
+                            <li class="category {{ service_addition.category.slug }}"><a href="{% pageurl page.get_parent %}category/{{ service_addition.category.slug }}">{{ service_addition.category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

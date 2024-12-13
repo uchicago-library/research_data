@@ -201,6 +201,22 @@ class ServicePage(AbstractBasePage):
         InlinePanel('funder_policy_additions', label='Funder Policies'),
     ]
 
+    def get_context(self, request):
+        """
+        Override the page object's get context method.
+        """
+        context = super(ServicePage, self).get_context(request)
+
+        clean_url = ''
+        if self.service_url:
+            clean_url = self.service_url.replace('https://', '').replace('http://', '')
+            if clean_url.endswith('/'):
+                clean_url = clean_url[:-1]
+
+        context['clean_url'] = clean_url
+
+        return context
+
 
 class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
     subpage_types = ['services.ServicePage']
