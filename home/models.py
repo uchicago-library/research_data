@@ -10,7 +10,18 @@ class HomePage(AbstractBasePage):
     cta_heading = models.CharField(max_length=100, blank=True)
     cta_text = RichTextField(blank=True, features=['bold'])
     cta_button_text = models.CharField(max_length=100, blank=True)
-    cta_button_link = models.URLField(blank=True)
+    cta_button_link = models.URLField(
+        blank=True,
+        help_text="Overrides the page link",
+    )
+    cta_button_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        related_name='+',
+        on_delete=models.SET_NULL,
+        help_text="Link to apply to the button. Links to internal pages, gets overriden by the Button Link for external links",
+    )
     cta_background_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -35,6 +46,7 @@ class HomePage(AbstractBasePage):
                     FieldPanel('cta_text'),
                     FieldPanel('cta_button_text'),
                     FieldPanel('cta_button_link'),
+                    FieldPanel('cta_button_page'),
                     FieldPanel('cta_background_image'),
                 ],
                 heading='Call to Action Panel',
