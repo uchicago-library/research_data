@@ -1,4 +1,4 @@
-{% extends "base/base-full-width.html" %}
+{% extends "base/base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
@@ -6,11 +6,11 @@
 {% block extra_css %}
     <link href="{% static "base/css/home_page.css" %}" rel="stylesheet" type="text/css"/>
 {% endblock extra_css %}
-
+<h3> HElloo HAHASaHaHahaAh</h3>
 {% block content %}
     {% load wagtailuserbar %}
     {% wagtailuserbar %}
-    <section id="homectasection" class="py-5 text-center container-fluid text-bg-dark" style="background-image: url('{% image page.cta_background_image original as bg_img %}{{ bg_img.url }}')">
+    <section id="homectasection" class="py-5 text-center text-bg-dark" style="background-image: url('{% image page.cta_background_image original as bg_img %}{{ bg_img.url }}')">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h2 class="">{{page.cta_heading}}</h2>
@@ -18,27 +18,29 @@
                 {% comment %} <p class="lead text-body-secondary">{{page.cta_background_image.url}}</p>
                 <p class="lead text-body-secondary">background image URL{{page.cta_background_image.formats.jpeg.0.url}}</p>
                 <p class="lead text-body-secondary">background image URL tag {% image page.cta_background_image fill-800x600 as bg_img %}{{ bg_img.url }}</p> {% endcomment %}
-                <p>
-                    <a href="{{page.cta_button_link}}" class="btn btn-primary my-2">{{page.cta_button_text}}</a>
-                </p>
+                {% if page.cta_button_link %}
+                    <p><a href="{{page.cta_button_link}}" class="btn btn-primary my-2">{{page.cta_button_text}}</a></p>
+                {% elif page.cta_button_page %}
+                    <p><a href="{{page.cta_button_page.url}}" class="btn btn-primary my-2">{{page.cta_button_text}}</a></p>
+                {% endif %}
             </div>
         </div>
     </section>
-{% comment %} 
-cta_heading
-cta_text
-cta_button_text
-cta_button_link
-cta_background_image
-{% endcomment %}
-    <div class="container-sm py-5">
+
+    <div class="py-5">
         {% for block in page.body %}
-            {{ block }}
+            <div class="container-sm">
+                {{ block }}
+            </div>
         {% endfor %}
     </div>
 
 {% comment %}Dynamic page sections{% endcomment %}
     {% for section_block in page.sections %}
-        {{ section_block }}
+        <div class="bg-primary text-bg-dark py-5">
+            <div class="container-sm">
+                {{ section_block }}
+            </div>
+        </div>
     {% endfor %}
 {% endblock content %}

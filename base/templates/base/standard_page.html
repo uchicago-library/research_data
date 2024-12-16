@@ -6,8 +6,12 @@
 {% block extra_css %}{% endblock extra_css %}
 
 {% block content %}
-    {% for block in page.body %}
-        {{ block }}
-    {% endfor %}
+    <div class="py-5">
+        {% for block in page.body %}
+            <div class="container-sm">
+                {{ block }}
+            </div>
+        {% endfor %}
+    </div>
     {% include "services/includes/services.html" %}
 {% endblock content %}

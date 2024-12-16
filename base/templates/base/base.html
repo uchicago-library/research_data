@@ -38,29 +38,37 @@
         {% load wagtailuserbar %}
         {% wagtailuserbar %}
         <main class="flex-shrink-0">
-            <div class="container-sm">
-                {% include "base/includes/breadcrumbs.html" %}
-            </div>
-
-            <div class="container-sm py-5">
-                {% if page.is_site_root %}
-                    <h1 class="visually-hidden">{{ page.title }}</h1>
-                {% else %}
+            
+            {% if page.is_site_root %}
+                <div class="container-sm">
+                    {% include "base/includes/breadcrumbs.html" %}
+                </div>
+                <h1 class="visually-hidden">{{ page.title }}</h1>
+            {% else %}
+            <div class="bg-primary text-bg-dark pb-3 pb-lg-5">
+                <div class="container-sm">
+                    {% include "base/includes/breadcrumbs.html" %}
                     <h1>{{ page.title }}</h1>
-                {% endif %}
-                {% block content %}
-                    {% for block in page.body %}
-                        {{ block }}
-                    {% endfor %}
-                {% endblock content %}
+                </div>
+            </div>
+            {% endif %}
 
-                {% if page.show_nested_children %}
+            {% block content %}
+                {% for block in page.body %}
+                    {{ block }}
+                {% endfor %}
+            {% endblock content %}
+
+            {% if page.show_nested_children %}
+            <div class="py-3">
+                <div class="container-sm">
                     <ul>
                         {% render_nested_pages page page.nested_children_depth %}
                     </ul>
-                {% endif %}
-
+                </div>
             </div>
+            {% endif %}
+
         </main>
 
         {% include "base/includes/footer.html" %}

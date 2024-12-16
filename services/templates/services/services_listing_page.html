@@ -5,21 +5,26 @@
 
 {% block extra_css %}{% endblock extra_css %}
 {% block content %}
-    {% for block in page.body %}
-        {{ block }}
-    {% endfor %}
-    <form method="get" action="{% pageurl page %}">
-        <input type="text" name="q" placeholder="Search services...">
-        <button type="submit">Search</button>
-    </form>
-    {% if phases %}
-        <ul>
-            {% for phase in phases %}
-                <li class="filter {{ phase.slug }}"><a href="{% pageurl page %}phase/{{ phase.slug }}">{{ phase.name }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 
-    {% include "services/includes/services.html" %}
+<div class="py-5">
+    <div class="container-sm">
+        {% for block in page.body %}
+            {{ block }}
+        {% endfor %}
+        <form method="get" action="{% pageurl page %}">
+            <input type="text" name="q" placeholder="Search services...">
+            <button type="submit">Search</button>
+        </form>
+        {% if phases %}
+            <ul>
+                {% for phase in phases %}
+                    <li class="filter {{ phase.slug }}"><a href="{% pageurl page %}phase/{{ phase.slug }}">{{ phase.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% include "services/includes/services.html" %}
+    </div>
+</div>
 
 {% endblock content %}

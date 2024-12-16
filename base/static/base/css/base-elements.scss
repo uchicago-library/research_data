@@ -1,6 +1,18 @@
 a{
     @extend .focus-ring !optional;
 }
+.smaller-text{
+    font-size: smaller;
+}
+.bg-primary .breadcrumb{
+    --bs-breadcrumb-divider-color: #bababa;
+    --bs-breadcrumb-item-active-color: #bababa; 
+    --bs-link-color: #bababa; 
+    --bs-link-color-rgb: 186,186,186;
+    --bs-link-hover-color: #ffffff;
+    --bs-link-hover-color-rgb: 255, 255, 255;
+}
+
 header {
     .nav-link{
         color: rgba(255, 255, 255, 0.85);
@@ -16,9 +28,9 @@ header {
         }
     }
 }
-.smaller-text{
-    font-size: smaller;
-}
+// .breadcrumb a{
+//     color: white;
+// }
 #news-listing{
     a{
         display: block;

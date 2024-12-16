@@ -7,7 +7,7 @@
                     <li class="breadcrumb-item"><a href="{% pageurl page %}">{{ page.title }}</a></li>
                 {% endif %}
             {% endfor %}
-            <li class="breadcrumb-item active" aria-current="page"><a href="{% pageurl self %}">{{ self.title }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ self.title }}</li>
         </ol>
     </nav>
 {% endif %}

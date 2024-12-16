@@ -1,5 +1,6 @@
 {% load wagtailcore_tags %}
 {% if services %}
+    <h2>Results</h2>
     <ul>
         {% for page in services %}
             <li><a href="{{ page.url }}">{{ page.title }}</a>

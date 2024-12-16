@@ -6,47 +6,51 @@
 {% block extra_css %}{% endblock extra_css %}
 
 {% block content %}
-    <ul id="news-listing" class="list-unstyled row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-        {% for child in page_obj %}
-        <li class="col">
-            <article>
-                <a href="{{ child.url }}">
-                    {% if child.thumbnail %}
-                        {% picture child.thumbnail format-{avif,webp,jpeg} fill-420x200 style="width: 100%; max-height:200px;object-fit:cover" %}
-                    {% endif %}
-                    <h2 class="h3 text-break" >{{ child.title }}</h2>
-                    <time datetime="{{ child.first_published_at|date:"Y-m-d" }}">
-                        {{ child.first_published_at|date:"F j, Y" }}
-                    </time><br>
-                    <span class="smaller-text">Read more >></span>
-                </a>
-                {{ child.excerpt|safe }}
-            </article>
-        </li>
-        {% empty %}
-            <li>News unavailable.</li>
-        {% endfor %}
-    </ul>
-
-    <nav aria-label="News index pagination">
-        <ul class="pagination">
-            {% if page_obj.has_previous %}
-                {% if not page_obj.previous_page_number == 1 %}
-                    <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
-                {% endif %}
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
-            {% endif %}
-
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+<div class="py-5">
+    <div class="container-sm">
+        <ul id="news-listing" class="list-unstyled row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+            {% for child in page_obj %}
+            <li class="col">
+                <article>
+                    <a href="{{ child.url }}">
+                        {% if child.thumbnail %}
+                            {% picture child.thumbnail format-{avif,webp,jpeg} fill-420x200 style="width: 100%; max-height:200px;object-fit:cover" %}
+                        {% endif %}
+                        <h2 class="h3 text-break" >{{ child.title }}</h2>
+                        <time datetime="{{ child.first_published_at|date:"Y-m-d" }}">
+                            {{ child.first_published_at|date:"F j, Y" }}
+                        </time><br>
+                        <span class="smaller-text">Read more >></span>
+                    </a>
+                    {{ child.excerpt|safe }}
+                </article>
             </li>
-
-            {% if page_obj.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
-                {% if not page_obj.next_page_number == page_obj.paginator.num_pages %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
-                {% endif %}
-            {% endif %}
+            {% empty %}
+                <li>News unavailable.</li>
+            {% endfor %}
         </ul>
-    </nav>
+
+        <nav aria-label="News index pagination">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    {% if not page_obj.previous_page_number == 1 %}
+                        <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                    {% endif %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+                {% endif %}
+
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+                </li>
+
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+                    {% if not page_obj.next_page_number == page_obj.paginator.num_pages %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
 {% endblock content %}
