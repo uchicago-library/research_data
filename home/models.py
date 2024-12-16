@@ -12,7 +12,7 @@ class HomePage(AbstractBasePage):
     cta_button_text = models.CharField(max_length=100, blank=True)
     cta_button_link = models.URLField(
         blank=True,
-        help_text="Overrides the page link",
+        help_text="Overrides the page link.",
     )
     cta_button_page = models.ForeignKey(
         'wagtailcore.Page',
@@ -20,7 +20,7 @@ class HomePage(AbstractBasePage):
         blank=True,
         related_name='+',
         on_delete=models.SET_NULL,
-        help_text="Link to apply to the button. Links to internal pages, gets overriden by the Button Link for external links",
+        help_text="Link to apply to the button. Link to internal pages using this, or override it with the Button Link for external links.",
     )
     cta_background_image = models.ForeignKey(
         "wagtailimages.Image",

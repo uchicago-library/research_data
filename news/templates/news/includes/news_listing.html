@@ -1,0 +1,23 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+<ul class="news-listing list-unstyled row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+    {% for child in news_items %}
+        <li class="col">
+            <article>
+                <a href="{{ child.url }}">
+                    {% if child.thumbnail %}
+                        {% picture child.thumbnail format-{avif,webp,jpeg} fill-420x200 style="width: 100%; max-height:200px;object-fit:cover" %}
+                    {% endif %}
+                    <h2 class="h3 text-break" >{{ child.title }}</h2>
+                    <time datetime="{{ child.first_published_at|date:"Y-m-d" }}">
+                        {{ child.first_published_at|date:"F j, Y" }}
+                    </time><br>
+                    <span class="smaller-text">Read more >></span>
+                </a>
+                {{ child.excerpt|safe }}
+            </article>
+        </li>
+    {% empty %}
+        <li>News unavailable.</li>
+    {% endfor %}
+</ul>

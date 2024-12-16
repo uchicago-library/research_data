@@ -31,7 +31,7 @@ header {
 // .breadcrumb a{
 //     color: white;
 // }
-#news-listing{
+.news-listing{
     a{
         display: block;
         text-decoration: none;
@@ -39,6 +39,17 @@ header {
         &:hover{
             text-decoration: underline;
             color: var(--bs-link-hover-color);
+        }
+    }
+}
+.bg-primary .news-listing{
+    a{
+        display: block;
+        text-decoration: none;
+        color: white;
+        &:hover{
+            text-decoration: underline;
+            color: white;
         }
     }
 }

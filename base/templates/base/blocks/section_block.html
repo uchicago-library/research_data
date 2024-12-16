@@ -1,9 +1,20 @@
-{% load wagtailcore_tags basic_tags %}
-<div class="section-{{ value.heading|slugify }}">
-    <h2>{{ value.heading }}</h2>
-    {% with page_chosen=value.page.specific %}
+{% load wagtailcore_tags basic_tags wagtailimages_tags %}
+
+{% with page_chosen=value.page.specific %}
+
+{% if page_chosen.url == "/news/" %}
+    
+    {% include "news/includes/news_listing.html" with news_items=page_chosen.get_children.live.in_menu|limit:value.count %}
+
+{% else %}
+
+    <div class="section-{{ value.heading|slugify }}">
+        <h2>{{ value.heading }}</h2>
         {% for child_page in page_chosen.get_children.live.in_menu|limit:value.count %}
             <div>
+                {% if child_page.thumbnail %}
+                    {% picture child.thumbnail format-{avif,webp,jpeg} fill-420x200 style="width: 100%; max-height:200px;object-fit:cover" %}
+                {% endif %}
                 <h3><a href="{{ child_page.url }}">
                     {{ child_page.title }}
                 </a></h3>
@@ -16,5 +27,8 @@
                 {% endif %}
             </div>
         {% endfor %}
-    {% endwith %}
-</div>
+    </div>
+
+{% endif %}
+
+{% endwith %}
