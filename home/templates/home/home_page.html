@@ -1,19 +1,23 @@
 {% extends "base/base-full-width.html" %}
-{% load static %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
-{% block extra_css %}{% endblock extra_css %}
+{% block extra_css %}
+    <link href="{% static "base/css/base.scss" %}" rel="stylesheet" type="text/x-scss"/>
+{% endblock extra_css %}
 
 {% block content %}
     {% load wagtailuserbar %}
     {% wagtailuserbar %}
-    <section class="py-5 text-center container">
+    <section id="homectasection" class="py-5 text-center container-fluid text-bg-dark" style="background-image: url('{% image page.cta_background_image original as bg_img %}{{ bg_img.url }}')">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h2 class="fw-light">{{page.cta_heading}}</h2>
+                <h2 class="">{{page.cta_heading}}</h2>
                 <p class="lead text-body-secondary">{{page.cta_text|safe}}</p>
-                <p class="lead text-body-secondary">{{page.cta_background_image.url}}</p>
+                {% comment %} <p class="lead text-body-secondary">{{page.cta_background_image.url}}</p>
+                <p class="lead text-body-secondary">background image URL{{page.cta_background_image.formats.jpeg.0.url}}</p>
+                <p class="lead text-body-secondary">background image URL tag {% image page.cta_background_image fill-800x600 as bg_img %}{{ bg_img.url }}</p> {% endcomment %}
                 <p>
                     <a href="{{page.cta_button_link}}" class="btn btn-primary my-2">{{page.cta_button_text}}</a>
                 </p>
