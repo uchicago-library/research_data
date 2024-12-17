@@ -13,17 +13,17 @@
             {{ block }}
         {% endfor %}
         <div class="services-listing-filters row row-cols-1 row-cols-md-2 row-cols-lg-4 mb-3">
-            <h2 class="visually-hidden">Search and Filter</h2>
+            <h2 class="visually-hidden">Search or Filter</h2>
             {% if phases %}
                 <div class="col">
                     <div class="btn-group mb-2 w-100">
-                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="phase-filter" role="listbox">
                         Research Lifecycle Phase
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% pageurl page %}">All</a></li>
+                        <ul id="phase-filter" class="dropdown-menu">
+                            <li role="option"><a class="dropdown-item" href="{% pageurl page %}">All</a></li>
                             {% for phase in phases %}
-                                <li><a class="dropdown-item" href="{% pageurl page %}phase/{{ phase.slug }}">{{ phase.name }}</a></li>
+                                <li role="option"><a class="dropdown-item" href="{% pageurl page %}phase/{{ phase.slug }}">{{ phase.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -32,7 +32,7 @@
             <div class="col">
                 <form method="get" action="{% pageurl page %}">
                     <div class="input-group input-group-sm mb-2">
-                        <input class="form-control" type="text" name="q" placeholder="Search" aria-label="Search term search" aria-describedby="button-search-servcies">
+                        <input class="form-control" type="text" name="q" placeholder='Try "social"' aria-label="Search term search" aria-describedby="button-search-servcies">
                         <button class="btn btn-outline-secondary" type="submit" id="button-search-servcies">Search</button>
                     </div>
                 </form>
