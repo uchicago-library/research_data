@@ -5,14 +5,14 @@
 {% if page_chosen.url == "/news/" %}
 
     <section class="section-{{ value.heading|slugify }}">
-        <h2>{{ value.heading }}</h2>
-        {% include "news/includes/news_listing.html" with hide_excerpt=True news_items=page_chosen.get_children.live.in_menu|limit:value.count %}
+        <h2 class="mb-4">{{ value.heading }}</h2>
+        {% include "news/includes/news_listing.html" with hide_excerpt=True h3_headings=True news_items=page_chosen.get_children.live.in_menu|limit:value.count %}
     </section>
 
 {% else %}
 
     <section class="section-{{ value.heading|slugify }}">
-        <h2>{{ value.heading }}</h2>
+        <h2 class="mb-4">{{ value.heading }}</h2>
         {% for child_page in page_chosen.get_children.live.in_menu|limit:value.count %}
             <div>
                 {% if child_page.thumbnail %}

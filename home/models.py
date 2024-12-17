@@ -38,7 +38,7 @@ class HomePage(AbstractBasePage):
     cta_darken_image = models.BooleanField(
         default=False,
         verbose_name="Darken background image?",
-        help_text="Check this box to add an overlay to the background image to darken it by 20%."
+        help_text="Check this box to add an overlay to the background image to darken it by 20%.",
     )
     sections = StreamField(
         [
@@ -61,6 +61,7 @@ class HomePage(AbstractBasePage):
                     FieldPanel('cta_darken_image'),
                 ],
                 heading='Call to Action Section (CTA)',
+                help_text="Needs an image, a heading, text, or button link to be visible.",
             ),
         ]
         + AbstractBasePage.content_panels[1:]
