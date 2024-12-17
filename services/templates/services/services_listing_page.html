@@ -8,20 +8,36 @@
 
 <div class="py-5">
     <div class="container-sm">
+
         {% for block in page.body %}
             {{ block }}
         {% endfor %}
-        <form method="get" action="{% pageurl page %}">
-            <input type="text" name="q" placeholder="Search services...">
-            <button type="submit">Search</button>
-        </form>
-        {% if phases %}
-            <ul>
-                {% for phase in phases %}
-                    <li class="filter {{ phase.slug }}"><a href="{% pageurl page %}phase/{{ phase.slug }}">{{ phase.name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+        <div class="services-listing-filters row row-cols-1 row-cols-md-2 mb-3">
+            {% if phases %}
+                <div class="col">
+                    <div class="btn-group mb-2 w-100">
+                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Research Lifecycle Phase
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% pageurl page %}">All</a></li>
+                            {% for phase in phases %}
+                                <li><a class="dropdown-item" href="{% pageurl page %}phase/{{ phase.slug }}">{{ phase.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="col">
+                <form method="get" action="{% pageurl page %}">
+                    <div class="input-group input-group-sm mb-2">
+                        <input class="form-control" type="text" name="q" placeholder="Search" aria-label="Search term search" aria-describedby="button-search-servcies">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-search-servcies">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
 
         {% include "services/includes/services.html" %}
     </div>
