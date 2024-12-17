@@ -23,7 +23,13 @@
                         <ul id="phase-filter" class="dropdown-menu">
                             <li role="option"><a class="dropdown-item" href="{% pageurl page %}">All</a></li>
                             {% for phase in phases %}
-                                <li role="option"><a class="dropdown-item" href="{% pageurl page %}phase/{{ phase.slug }}">{{ phase.name }}</a></li>
+                                {% pageurl page as base_url %}
+                                {% with phase_url=base_url|add:"phase/"|add:phase.slug|add:"/" %}
+                                    {% if phase_url == request.path %}
+                                        {% comment %} active {% endcomment %}
+                                    {% endif %}
+                                    <li role="option"><a class="dropdown-item" href="{% pageurl page %}phase/{{ phase.slug }}">{{ phase.name }}</a></li>
+                                {% endwith %}
                             {% endfor %}
                         </ul>
                     </div>
