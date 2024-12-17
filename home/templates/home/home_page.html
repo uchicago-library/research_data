@@ -20,9 +20,9 @@
                     <p class="lead text-body-secondary">background image URL{{page.cta_background_image.formats.jpeg.0.url}}</p>
                     <p class="lead text-body-secondary">background image URL tag {% image page.cta_background_image fill-800x600 as bg_img %}{{ bg_img.url }}</p> {% endcomment %}
                     {% if page.cta_button_link %}
-                        <p><a href="{{page.cta_button_link}}" class="btn btn-primary my-2">{{page.cta_button_text}}</a></p>
+                        <p><a href="{{page.cta_button_link}}" class="btn btn-light my-2">{{page.cta_button_text}}</a></p>
                     {% elif page.cta_button_page %}
-                        <p><a href="{{page.cta_button_page.url}}" class="btn btn-primary my-2">{{page.cta_button_text}}</a></p>
+                        <p><a href="{{page.cta_button_page.url}}" class="btn btn-light my-2">{{page.cta_button_text}}</a></p>
                     {% endif %}
                 </div>
             </div>
