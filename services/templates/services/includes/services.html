@@ -11,16 +11,32 @@
                     <h3 class="h4 card-title">{{ page.title }}</h3>
                     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                     {% if page.service_category_additions.all %}
-                    <ul>
-                        {% for service_addition in page.service_category_additions.all %}
-                        <li class="category category-{{ service_addition.category.slug }}">
-                            <!-- <a href="{% pageurl page.get_parent %}category/{{ service_addition.category.slug }}"> -->
-                                {{ service_addition.category.name }}
-                                <!-- </a> -->
-                            </li>
+                        <ul class="list-inline">
+                            {% for service_addition in page.service_category_additions.all %}
+                                <li class="list-inline-item">
+                                    <span class="badge rounded-pill text-bg-secondary">{{service_addition.category.name}}</span>
+                                </li>
                             {% endfor %}
                         </ul>
-                        {% endif %}
+                    {% endif %}
+                    {% comment %} {% if page.division_additions.all %}
+                        <ul class="list-unstyled">
+                            {% for division_addition in page.division_additions.all %}
+                                <li class="list-inline-item">
+                                    Div: {{division_addition.division.name}}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% if page.funder_policy_additions.all %}
+                        <ul class="list-unstyled">
+                            {% for policy_addition in page.funder_policy_additions.all %}
+                                <li class="list-inline-item">
+                                    Pol: {{policy_addition.funder_policy.name}}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %} {% endcomment %}
                     </div>
                     <div class="card-footer">
                         <a href="{{ page.url }}" class="stretched-link">Read More</a>
