@@ -1,12 +1,16 @@
-{% load wagtailcore_tags static compress basic_tags %}
+{% load wagtailcore_tags static compress basic_tags navigation_tags %}
 {% wagtail_site as current_site %}
 <!DOCTYPE html>
 <html lang="en" class="h-100" data-bs-theme="light">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% get_site_root as site_root %}
         {% if page.search_description %}
             <meta name="description" content="{{page.search_description}}">
+        {% elif site_root.search_description %}
+            <meta name="description" content="{{site_root.search_description}}">
         {% endif %}
         <title>
             {% block title %}
