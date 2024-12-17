@@ -3,12 +3,15 @@
 {% with page_chosen=value.page.specific %}
 
 {% if page_chosen.url == "/news/" %}
-    
-    {% include "news/includes/news_listing.html" with news_items=page_chosen.get_children.live.in_menu|limit:value.count %}
+
+    <section class="section-{{ value.heading|slugify }}">
+        <h2>{{ value.heading }}</h2>
+        {% include "news/includes/news_listing.html" with hide_excerpt=True news_items=page_chosen.get_children.live.in_menu|limit:value.count %}
+    </section>
 
 {% else %}
 
-    <div class="section-{{ value.heading|slugify }}">
+    <section class="section-{{ value.heading|slugify }}">
         <h2>{{ value.heading }}</h2>
         {% for child_page in page_chosen.get_children.live.in_menu|limit:value.count %}
             <div>
@@ -27,7 +30,7 @@
                 {% endif %}
             </div>
         {% endfor %}
-    </div>
+    </section>
 
 {% endif %}
 

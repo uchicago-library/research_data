@@ -27,13 +27,13 @@
         </div>
     </section>
 
-    <div class="py-5">
+    <section class="py-5">
         {% for block in page.body %}
             <div class="container-sm">
                 {{ block }}
             </div>
         {% endfor %}
-    </div>
+    </section>
 
 {% comment %}Dynamic page sections{% endcomment %}
     {% for section_block in page.sections %}

@@ -14,7 +14,9 @@
                     </time><br>
                     <span class="smaller-text">Read more >></span>
                 </a>
-                {{ child.specific.excerpt|safe }}
+                {% if not hide_excerpt %}
+                    {{ child.specific.excerpt|safe }}
+                {% endif %}
             </article>
         </li>
     {% empty %}
