@@ -21,24 +21,6 @@
                             {% endfor %}
                         </ul>
                     {% endif %}
-                    {% comment %} {% if page.division_additions.all %}
-                        <ul class="list-unstyled">
-                            {% for division_addition in page.division_additions.all %}
-                                <li class="list-inline-item">
-                                    Div: {{division_addition.division.name}}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                    {% if page.funder_policy_additions.all %}
-                        <ul class="list-unstyled">
-                            {% for policy_addition in page.funder_policy_additions.all %}
-                                <li class="list-inline-item">
-                                    Pol: {{policy_addition.funder_policy.name}}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %} {% endcomment %}
                 </div>
             </article>
         </li>
