@@ -1,6 +1,6 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
-<footer class="footer mt-auto py-3 bg-dark text-bg-dark">
+<footer class="footer mt-auto py-3 bg-dark text-bg-dark white-links">
     <div class="container-sm">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 py-3">
 
@@ -20,7 +20,7 @@
                 {% if site_root.get_children.live.in_menu %}
                     <ul class="nav flex-column" role="navigation">
                         {% for menuitem in site_root.get_children.live.in_menu %}
-                            <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
+                            <li class="nav-item mb-2"><a class="nav-link p-0" href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
                         {% endfor %}
                     </ul>
                 {% endif %}
@@ -28,9 +28,9 @@
 
             <div class="col my-3">
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Privacy Policy</a></li>
-                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Contact Us</a></li>
-                    <li class="nav-item mb-2"><a class="nav-link p-0 text-bg-dark" href="#">Staff Login</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0" href="#">Privacy Policy</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0" href="#">Contact Us</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0" href="#">Staff Login</a></li>
                 </ul>
             </div>
 

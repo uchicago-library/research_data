@@ -44,7 +44,7 @@
 
 {% comment %}Dynamic page sections{% endcomment %}
     {% for section_block in page.sections %}
-        <div class="{% if forloop.counter0|divisibleby:2 %}bg-primary text-bg-dark{% endif %} py-5">
+        <div class="{% if forloop.counter0|divisibleby:2 %}bg-primary text-bg-dark white-links{% endif %} py-5">
             <div class="container-sm">
                 {{ section_block }}
             </div>
