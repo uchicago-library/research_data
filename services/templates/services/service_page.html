@@ -13,7 +13,7 @@
             {% endfor %}
 
             {% if page.service_url %}
-                <div class="text-center">
+                <div class="text-center py-2">
                     <a class="btn btn-primary" href="{{ page.service_url }}" role="button">Access {{page.title}}</a>
                 </div>
             {% endif %}
@@ -27,7 +27,7 @@
             {% if page.service_url %}
                 <dt class="col-sm-3">URL</dt>
                 <dd class="col-sm-9">
-                    <a class="mb-3" href="{{ page.service_url }}">{{clean_url}}</a>
+                    <p><a href="{{ page.service_url }}">{{clean_url}}</a></p>
                 </dd>
             {% endif %}
             {# phases #}

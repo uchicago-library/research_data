@@ -15,7 +15,7 @@
         {% endfor %}
     </div>
     
-    {% if page.show_nested_children %}
+    {% if page.show_nested_children and page.get_children.exists %}
     <div class="pb-5">
         <div class="container-sm">
             <h2>Further Reading</h2>
