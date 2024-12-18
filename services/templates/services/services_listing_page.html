@@ -3,23 +3,44 @@
 
 {% block body_class %}template-services-listing-page{% endblock %}
 
+{% block title %}
+    {% if service_filter_name %}
+        {{ service_filter_name }} Services
+    {% elif request.GET.q %}
+        Services with: {{ request.GET.q }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+{% endblock title %}
+
+{% block banner_title %}
+    {% if service_filter_name %}
+        {{ service_filter_name }} Services
+    {% elif request.GET.q %}
+        Services with: {{ request.GET.q }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+    {# TODO: This does not consider if one of the additions is checked out. #}
+{% endblock banner_title %}
+
 {% block extra_css %}{% endblock extra_css %}
 {% block content %}
 
-<div class="py-5">
-    {% include "base/includes/body.html" %}
-    <div class="container-sm">
+    <div class="py-5">
+        {% include "base/includes/body.html" %}
+        <div class="container-sm">
 
-        {% include "services/includes/services-filters.html" %}
-        
-        {% if services %}
-            <div class="mb-3">
-                <h2>Results</h2>
-                <small>{{services|length}} results</small>
-            </div>
-            {% include "services/includes/services-listing.html" %}
-        {% endif %}
+            {% include "services/includes/services-filters.html" %}
+            
+            {% if services %}
+                {% comment %} <div class="mb-3">
+                    <h2>Results</h2>
+                    <small>{{services|length}} results</small>
+                </div>  {% endcomment %}
+                {% include "services/includes/services-listing.html" %}
+            {% endif %}
+        </div>
     </div>
-</div>
 
 {% endblock content %}

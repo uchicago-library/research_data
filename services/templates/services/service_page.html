@@ -67,7 +67,8 @@
                                         <ul class="list-unstyled">
                                             {% for division_addition in page.division_additions.all %}
                                                 <li class="list-inline-item">
-                                                    <a class="" href="{{ parent_page_url }}division/{{ division_addition.division.slug }}">
+                                                    {% comment %} <a class="" href="{{ parent_page_url }}division/{{ division_addition.division.slug }}"> {% endcomment %}
+                                                    <a class="" href="{{ division_addition.division.url }}">
                                                         {% comment %} <i class="fa-solid fa-building"></i> {% endcomment %}
                                                         {{division_addition.division.name}}
                                                     </a>
@@ -83,7 +84,7 @@
                                         <ul class="list-unstyled">
                                             {% for funder_policy_addition in page.funder_policy_additions.all %}
                                                 <li class="list-inline-item">
-                                                    <a class="" href="{{ parent_page_url }}funder_policy/{{ funder_policy_addition.funder_policy.slug }}">
+                                                    <a class="" href="{{ funder_policy_addition.funder_policy.url }}">
                                                         {% comment %} <i class="fa-solid fa-hands-holding-circle"></i> {% endcomment %}
                                                         {{funder_policy_addition.funder_policy.name}}
                                                     </a>

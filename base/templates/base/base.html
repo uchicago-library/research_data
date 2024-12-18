@@ -15,13 +15,13 @@
         <title>
             {% block title %}
                 {% if page.seo_title %}
-                    {{page.seo_title}}
+                    {{page.seo_title}} {# title defined in the promote panel of the page #}
                 {% else %}
-                    {{ page.title }}
+                    {{ page.title }} {# title defined from the content panel of the page #}
                 {% endif %}
-            {% endblock %}
+            {% endblock title %}
             {% if current_site.site_name %}
-                - {{ current_site.site_name }}
+                | {{ current_site.site_name }}
             {% endif %}
         </title>
 
@@ -56,7 +56,15 @@
                 <div class="bg-primary text-bg-dark white-links pb-3 pb-lg-5">
                     <div class="container-sm">
                         {% include "base/includes/breadcrumbs.html" %}
-                        <h1>{{ page.title }}</h1>
+                        <h1>
+                            {% block banner_title %}
+                                {% if page.seo_title %}
+                                    {{page.seo_title}} {# title defined in the promote panel of the page #}
+                                {% else %}
+                                    {{ page.title }} {# title defined from the content panel of the page #}
+                                {% endif %}
+                            {% endblock banner_title %}
+                        </h1>
                         {% block titlebanner %}{% endblock titlebanner %}
                     </div>
                 </div>

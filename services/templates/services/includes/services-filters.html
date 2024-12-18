@@ -1,6 +1,6 @@
 {% load static wagtailcore_tags %}
 {% pageurl page as base_url %}
-<div class="services-listing-filters row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mb-3">
+<div class="services-listing-filters row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mb-3">
     <h2 class="visually-hidden">Search or Filter</h2>
     {% if phases %}
     <div class="col">
@@ -35,4 +35,8 @@
             </div>
         </form>
     </div>
+    <div class="col">
+        <small>{{services|length}} results</small>
+    </div>
+    
 </div>
