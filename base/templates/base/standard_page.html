@@ -7,28 +7,9 @@
 {% block extra_css %}{% endblock extra_css %}
 
 {% block content %}
-    <div class="py-5">
-        {% for block in page.body %}
-            <div class="container-sm">
-                <div class="row">
-                    <div class="col col-md-8">
-                        {{ block }}
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    {% include "base/includes/body.html" %}
     
-    {% if page.show_nested_children and page.get_children.exists %}
-    <div class="pb-5">
-        <div class="container-sm">
-            <h2>Further Reading</h2>
-            <ul>
-                {% render_nested_pages page page.nested_children_depth %}
-            </ul>
-        </div>
-    </div>
-    {% endif %}
+    {% include "base/includes/child_pages_listing.html" %}
 
     {% if services %}
         <div class="container-sm pb-5">

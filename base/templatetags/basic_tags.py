@@ -25,9 +25,9 @@ def render_nested_pages(context, page, max_depth=1, current_depth=1):
     output = []
     for child in page.get_children().specific():
         if child.live and child.show_in_menus:
-            output.append(f'<li><a href="{child.url}">{child.title}</a>')
+            output.append(f'<li class="nav-item"><a class="nav-link" href="{child.url}">{child.title}</a>')
             if child.get_children().filter(live=True, show_in_menus=True).exists():
-                output.append('<ul>')
+                output.append('<ul class="nav flex-column">')
                 output.append(
                     render_nested_pages(context, child, max_depth, current_depth + 1)
                 )

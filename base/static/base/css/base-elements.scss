@@ -1,35 +1,21 @@
+// ELEMENTS
 a{
     @extend .focus-ring !optional;
 }
 .smaller-text{
     font-size: smaller;
 }
-.bg-primary .breadcrumb{
-    --bs-breadcrumb-divider-color: #bababa;
-    --bs-breadcrumb-item-active-color: #bababa; 
-    --bs-link-color: #bababa; 
-    --bs-link-color-rgb: 186,186,186;
-    --bs-link-hover-color: #ffffff;
-    --bs-link-hover-color-rgb: 255, 255, 255;
-}
-
-header {
-    .nav-link{
-        color: rgba(255, 255, 255, 0.85);
-        border-color: rgba(255, 255, 255, 0.35);
+.text-bg-dark.white-links{
+    // --bs-link-color-rgb: 255,255,255;
+    // --bs-link-hover-color-rgb: 255,255,255;
+    a{
+        text-decoration: none;
+        color: white;
         &:hover{
-            border-bottom: 2px solid rgba(255, 255, 255, 0.35);
             color: white;
-        }
-        @media (min-width: 768px) {
-            &.active{
-                border-bottom: 2px solid white;
-            }
+            text-decoration: underline;
         }
     }
-}
-.container-sm{
-    overflow: auto;
 }
 img.richtext-image.full-width {
     max-width: 100%;
@@ -41,13 +27,40 @@ img.richtext-image.full-width {
     display: block;
 }
 img.richtext-image.left{
+    max-width: 100%;
     float: left !important;
     margin-right: .5rem;
 }
 img.richtext-image.right{
+    max-width: 100%;
     float: right !important;
     margin-left: .5rem;
 }
+
+// GENERAL COMPONENTS
+// .navbar-nav {
+//     --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
+//     --bs-nav-link-color: var(--bs-navbar-color);
+// }
+.navbar-dark, .navbar[data-bs-theme="dark"]{
+    --bs-navbar-hover-color: rgba(255, 255, 255, 1);
+    --bs-navbar-color: rgba(255, 255, 255, 0.85);
+}
+.nav-underline .nav-link.active, 
+.nav-underline .show > .nav-link{
+    font-weight: 600;
+}
+.bg-primary .breadcrumb{
+    --bs-breadcrumb-divider-color: #bababa;
+    --bs-breadcrumb-item-active-color: #bababa; 
+    --bs-link-color: #bababa; 
+    --bs-link-color-rgb: 186,186,186;
+    --bs-link-hover-color: #ffffff;
+    --bs-link-hover-color-rgb: 255, 255, 255;
+}
+// .breadcrumb{ --bs-breadcrumb-margin-bottom: 0; }
+
+// SPECIFIC COMPONENTS
 .news-listing{
     a{
         display: block;
@@ -63,16 +76,6 @@ img.richtext-image.right{
     &:hover{
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
     }}
-}
-.text-bg-dark.white-links{
-    a{
-        text-decoration: none;
-        color: white;
-        &:hover{
-            text-decoration: underline;
-            color: white;
-        }
-    }
 }
 .services-listing .card{
     // background-color: var(--bs-secondary-bg);

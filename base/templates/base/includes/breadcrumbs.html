@@ -1,5 +1,5 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
-{% if not request.path == "/" %}
+{% if not request.path == "/" %} {# The template checks for this, but we check again :) #}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb py-1 smaller-text">
             {% for page in self.get_ancestors %}

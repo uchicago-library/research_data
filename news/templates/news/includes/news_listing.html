@@ -15,9 +15,9 @@
                             <h2 class="h3 mb-0 text-break" >{{ child.title }}</h2>
                         {% endif %}
                     </a>
-                    <time datetime="{{ child.first_published_at|date:"Y-m-d" }}">
+                    <p><time datetime="{{ child.first_published_at|date:"Y-m-d" }}">
                         {{ child.first_published_at|date:"F j, Y" }}
-                    </time><br>
+                    </time></p>
                     {% if not hide_excerpt %}                        
                         {% if child.specific.excerpt %}
                             {{child.specific.excerpt|richtext}}

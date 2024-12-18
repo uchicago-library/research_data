@@ -7,11 +7,8 @@
 {% block content %}
 
 <div class="py-5">
+    {% include "base/includes/body.html" %}
     <div class="container-sm">
-        
-        {% for block in page.body %}
-            {{ block }}
-        {% endfor %}
 
         {% include "services/includes/services-filters.html" %}
         

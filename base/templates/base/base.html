@@ -46,39 +46,27 @@
         {% include "base/includes/header.html" %}
         {% load wagtailuserbar %}
         {% wagtailuserbar %}
-        <main class="flex-shrink-0">
+
+        <main class="flex-shrink-0"> {# This makes the footer stick to the bottom of the page in really small pages #}
             
+            {# Breadcrumbs + Title #}
             {% if page.is_site_root %}
-                <div class="container-sm">
-                    {% include "base/includes/breadcrumbs.html" %}
-                </div>
                 <h1 class="visually-hidden">{{ page.title }}</h1>
             {% else %}
-            <div class="bg-primary text-bg-dark white-links pb-3 pb-lg-5">
-                <div class="container-sm">
-                    {% include "base/includes/breadcrumbs.html" %}
-                    <h1>{{ page.title }}</h1>
-                </div>
-            </div>
-            {% endif %}
-
-            {% block content %}
-                <div class="container-sm pb-5">
-                    {% for block in page.body %}
-                        {{ block }}
-                    {% endfor %}
-                </div>
-                
-                {% if page.show_nested_children %}
-                <div class="pb-5">
+                <div class="bg-primary text-bg-dark white-links pb-3 pb-lg-5">
                     <div class="container-sm">
-                        <h2>Further Reading</h2>
-                        <ul>
-                            {% render_nested_pages page page.nested_children_depth %}
-                        </ul>
+                        {% include "base/includes/breadcrumbs.html" %}
+                        <h1>{{ page.title }}</h1>
+                        {% block titlebanner %}{% endblock titlebanner %}
                     </div>
                 </div>
-                {% endif %}
+            {% endif %}
+
+            {# Content + Child Pages #}
+            {% block content %}
+                {% include "base/includes/body.html" %}
+                
+                {% include "base/includes/child_pages_listing.html" %}
             {% endblock content %}
 
         </main>
@@ -86,7 +74,6 @@
         {% include "base/includes/footer.html" %}
 
         <link href="{% static "base/css/base.scss" %}" rel="stylesheet" type="text/x-scss"/>
-        {# Add popper if required #}
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
         <script src="{% static "base/bootstrap/dist/js/bootstrap.min.js" %}" ></script>
     </body>

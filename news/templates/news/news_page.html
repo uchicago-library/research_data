@@ -4,6 +4,12 @@
 {% block body_class %}template-news-index-page{% endblock %}
 
 {% block extra_css %}{% endblock extra_css %}
+{% block titlebanner %}
+    <time datetime="{{ page.first_published_at|date:"Y-m-d" }}">
+        {{ page.first_published_at|date:"F j, Y" }}
+    </time>
+{% endblock titlebanner %}
+
 {% block content %}
 
 <div class="py-5">
@@ -11,21 +17,17 @@
         <div class="row">
             <div class="col col-md-8">
                 {% if page.thumbnail %}
-                <figure class="figure">
-                    {% picture page.thumbnail format-{avif,webp,jpeg} class="img-fluid" %}
-                    {% if page.thumbnail_caption %}
-                        <figcaption class="figure-caption">{{ page.thumbnail_caption }}</figcaption>
-                    {% endif %}
-                </figure>
+                    <figure class="figure">
+                        {% picture page.thumbnail format-{avif,webp,jpeg} class="img-fluid" %}
+                        {% if page.thumbnail_caption %}
+                            <figcaption class="figure-caption">{{ page.thumbnail_caption }}</figcaption>
+                        {% endif %}
+                    </figure>
                 {% endif %}
-                <p><time datetime="{{ page.first_published_at|date:"Y-m-d" }}">
-                    {{ page.first_published_at|date:"F j, Y" }}
-                </time></p>
-                {% for block in page.body %}
-                    {{ block }}
-                {% endfor %}
             </div>
         </div>
     </div>
+
+    {% include "base/includes/body.html" %}
 </div>
 {% endblock content %}
