@@ -37,9 +37,11 @@ img.richtext-image.full-width {
 }
 img.richtext-image.left{
     float: left !important;
+    margin-right: .5rem;
 }
 img.richtext-image.right{
     float: right !important;
+    margin-left: .5rem;
 }
 .news-listing{
     a{
