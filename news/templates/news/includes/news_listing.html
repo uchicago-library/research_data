@@ -1,26 +1,33 @@
 {% load static wagtailcore_tags wagtailimages_tags %}
 
-<ul class="news-listing list-unstyled row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-5">
+<ul class="news-listing list-unstyled row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 gx-5">
     {% for child in news_items %}
-        <li class="col">
+        <li class="col mb-3">
             <article>
-                <a href="{{ child.url }}">
-                    {% if child.specific.thumbnail %}
-                        {% picture child.specific.thumbnail format-{avif,webp,jpeg} fill-420x200 style="width: 100%; max-height:200px;object-fit:cover" %}
-                    {% endif %}
-                    {% if h3_headings %}
-                        <h3 class="h4 text-break" >{{ child.title }}</h3>
-                    {% else %}
-                        <h2 class="h3 text-break" >{{ child.title }}</h2>
-                    {% endif %}
+                {% if child.specific.thumbnail %}
+                {% picture child.specific.thumbnail format-{avif,webp,jpeg} fill-420x200 style="width: 100%; max-height:200px;object-fit:cover" %}
+                {% endif %}
+                <div class="p-2">
+                    <a href="{{ child.url }}" class="stretched-link" aria-label="Read more about {{ child.title }}">
+                        {% if h3_headings %}
+                            <h3 class="h4 mb-0 text-break" >{{ child.title }}</h3>
+                        {% else %}
+                            <h2 class="h3 mb-0 text-break" >{{ child.title }}</h2>
+                        {% endif %}
+                    </a>
                     <time datetime="{{ child.first_published_at|date:"Y-m-d" }}">
                         {{ child.first_published_at|date:"F j, Y" }}
                     </time><br>
-                    <span class="smaller-text">Read more >></span>
-                </a>
-                {% if not hide_excerpt %}
-                    {{ child.specific.excerpt|safe }}
-                {% endif %}
+                    {% if not hide_excerpt %}                        
+                        {% if child.specific.excerpt %}
+                            {{child.specific.excerpt|richtext}}
+                        {% else %}
+                            {% with first_block=child.specific.body|first %}
+                                {{ first_block.value|truncatechars:300|richtext }}
+                            {% endwith %}
+                        {% endif %}
+                    {% endif %}
+                </div>
             </article>
         </li>
     {% empty %}

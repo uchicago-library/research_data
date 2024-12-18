@@ -2,25 +2,26 @@
 
 {% with page_chosen=value.page.specific %}
 
+<section class="section-{{ value.heading|slugify }}">
+    <div class="mb-4">
+        <h2>{{ value.heading }}</h2>
+        <a href="{{page_chosen.url}}">View all</a>
+    </div>
 {% if page_chosen.url == "/news/" %}
 
-    <section class="section-{{ value.heading|slugify }}">
-        <h2 class="mb-4">{{ value.heading }}</h2>
         {% include "news/includes/news_listing.html" with hide_excerpt=True h3_headings=True news_items=page_chosen.get_children.live.in_menu|limit:value.count %}
-    </section>
 
-{% else %}
-
-    <section class="section-{{ value.heading|slugify }}">
-        <h2 class="mb-4">{{ value.heading }}</h2>
+    
+    {% else %}
+    
         {% for child_page in page_chosen.get_children.live.in_menu|limit:value.count %}
-            <div>
+            <div class="position-relative">
                 {% if child_page.thumbnail %}
                     {% picture child.thumbnail format-{avif,webp,jpeg} fill-420x200 style="width: 100%; max-height:200px;object-fit:cover" %}
                 {% endif %}
-                <h3><a href="{{ child_page.url }}">
-                    {{ child_page.title }}
-                </a></h3>
+                <a href="{{ child_page.url }}" class="stretched-link">
+                    <h3>{{ child_page.title }}</h3>
+                </a>
                 {% if child_page.specific.excerpt %}
                     {{child_page.specific.excerpt|richtext}}
                 {% else %}
@@ -30,8 +31,6 @@
                 {% endif %}
             </div>
         {% endfor %}
-    </section>
-
 {% endif %}
-
+    </section>
 {% endwith %}

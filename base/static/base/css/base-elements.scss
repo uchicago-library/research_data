@@ -41,10 +41,14 @@ header {
             color: var(--bs-link-hover-color);
         }
     }
+    article{
+        position: relative;
+    &:hover{
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    }}
 }
-.bg-primary .news-listing{
+.text-bg-dark{
     a{
-        display: block;
         text-decoration: none;
         color: white;
         &:hover{
