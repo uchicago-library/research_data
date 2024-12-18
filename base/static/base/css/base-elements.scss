@@ -28,9 +28,19 @@ header {
         }
     }
 }
-// .breadcrumb a{
-//     color: white;
-// }
+.container-sm{
+    overflow: auto;
+}
+img.richtext-image.full-width {
+    max-width: 100%;
+    height: auto;
+}
+img.richtext-image.left{
+    float: left !important;
+}
+img.richtext-image.right{
+    float: right !important;
+}
 .news-listing{
     a{
         display: block;
