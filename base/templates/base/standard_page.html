@@ -10,7 +10,11 @@
     <div class="py-5">
         {% for block in page.body %}
             <div class="container-sm">
-                {{ block }}
+                <div class="row">
+                    <div class="col col-md-8">
+                        {{ block }}
+                    </div>
+                </div>
             </div>
         {% endfor %}
     </div>

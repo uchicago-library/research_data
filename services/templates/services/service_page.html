@@ -25,15 +25,15 @@
         <dl class="row">
             {# url #}
             {% if page.service_url %}
-                <dt class="col-sm-3">URL</dt>
-                <dd class="col-sm-9">
+                <dt class="col-sm-3 col-lg-2">URL</dt>
+                <dd class="col-sm-9 col-lg-10">
                     <p><a href="{{ page.service_url }}">{{clean_url}}</a></p>
                 </dd>
             {% endif %}
             {# phases #}
             {% if page.research_lifecycle_phase_additions.all %}
-                <dt class="col-sm-3">Phase</dt>
-                <dd class="col-sm-9">
+                <dt class="col-sm-3 col-lg-2">Phase</dt>
+                <dd class="col-sm-9 col-lg-10">
                     <ul class="list-inline">
                         {% for research_lifecycle_phase_addition in page.research_lifecycle_phase_additions.all %}
                             <li class="list-inline-item">
@@ -47,8 +47,8 @@
             {% endif %}
             {# CATEGORIES #}
             {% if page.service_category_additions.all %}
-                <dt class="col-sm-3">Category</dt>
-                <dd class="col-sm-9">
+                <dt class="col-sm-3 col-lg-2">Category</dt>
+                <dd class="col-sm-9 col-lg-10">
                     <ul class="list-inline">
                         {% for service_addition in page.service_category_additions.all %}
                             <li class="list-inline-item">
@@ -63,8 +63,8 @@
             {% endif %}
             {# DIVISION division_additions #}
             {% if page.division_additions.all %}
-                <dt class="col-sm-3">Division</dt>
-                <dd class="col-sm-9">
+                <dt class="col-sm-3 col-lg-2">Division</dt>
+                <dd class="col-sm-9 col-lg-10">
                     <ul class="list-unstyled">
                         {% for division_addition in page.division_additions.all %}
                             <li class="list-inline-item">
@@ -79,8 +79,8 @@
             {% endif %}
             {# FUNDER POLICIES funder_policy_additions #}
             {% if page.funder_policy_additions.all %}
-                <dt class="col-sm-3">Funder Policy</dt>
-                <dd class="col-sm-9">
+                <dt class="col-sm-3 col-lg-2">Funder Policy</dt>
+                <dd class="col-sm-9 col-lg-10">
                     <ul class="list-unstyled">
                         {% for funder_policy_addition in page.funder_policy_additions.all %}
                             <li class="list-inline-item">
