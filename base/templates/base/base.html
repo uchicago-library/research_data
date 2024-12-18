@@ -63,20 +63,23 @@
             {% endif %}
 
             {% block content %}
-                {% for block in page.body %}
-                    {{ block }}
-                {% endfor %}
-            {% endblock content %}
-
-            {% if page.show_nested_children %}
-            <div class="py-3">
-                <div class="container-sm">
-                    <ul>
-                        {% render_nested_pages page page.nested_children_depth %}
-                    </ul>
+                <div class="container-sm pb-5">
+                    {% for block in page.body %}
+                        {{ block }}
+                    {% endfor %}
                 </div>
-            </div>
-            {% endif %}
+                
+                {% if page.show_nested_children %}
+                <div class="pb-5">
+                    <div class="container-sm">
+                        <h2>Further Reading</h2>
+                        <ul>
+                            {% render_nested_pages page page.nested_children_depth %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            {% endblock content %}
 
         </main>
 

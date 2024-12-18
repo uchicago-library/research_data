@@ -1,14 +1,13 @@
 {% load wagtailcore_tags %}
 {% if services %}
-    <h2>Results</h2>
-    <small>{{services|length}} results</small>
-
     <ul class="services-listing list-unstyled row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-5">
         {% for page in services %}
         <li class="col">
             <article class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h3 class="h4 card-title">{{ page.title }}</h3>
+                    <a href="{{ page.url }}" class="stretched-link">
+                        <h3 class="h4 card-title">{{ page.title }}</h3>
+                    </a>
                     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                     {% if page.service_category_additions.all %}
                         <ul class="list-inline">
@@ -40,9 +39,6 @@
                             {% endfor %}
                         </ul>
                     {% endif %} {% endcomment %}
-                </div>
-                <div class="card-footer">
-                    <a href="{{ page.url }}" class="stretched-link">Read More</a>
                 </div>
             </article>
         </li>

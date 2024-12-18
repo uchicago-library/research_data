@@ -1,5 +1,6 @@
 {% extends "base/base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags basic_tags %}
+
 
 {% block body_class %}template-standardpage{% endblock %}
 
@@ -13,5 +14,22 @@
             </div>
         {% endfor %}
     </div>
-    {% include "services/includes/services-listing.html" %}
+    
+    {% if page.show_nested_children %}
+    <div class="pb-5">
+        <div class="container-sm">
+            <h2>Further Reading</h2>
+            <ul>
+                {% render_nested_pages page page.nested_children_depth %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if services %}
+        <div class="container-sm pb-5">
+            <h2>Services</h2>
+            {% include "services/includes/services-listing.html" %}
+        </div>
+    {% endif %}
 {% endblock content %}

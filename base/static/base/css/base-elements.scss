@@ -57,10 +57,20 @@ header {
         }
     }
 }
-.services-listing .card:hover{
+.services-listing .card{
     // background-color: var(--bs-secondary-bg);
     // background-color: var(--bs-primary-bg-subtle);
     // background-color: var(--bs-info-bg-subtle);
     // @extend .shadow-sm;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    &:hover{
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    }
+    a{
+        text-decoration: none;
+        color: var(--bs-body-color);
+        &:hover{
+            color: var(--bs-link-hover-color);
+            text-decoration: underline;
+        }
+    }
 }

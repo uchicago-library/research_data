@@ -14,8 +14,12 @@
         {% endfor %}
 
         {% include "services/includes/services-filters.html" %}
-
-        {% include "services/includes/services-listing.html" %}
+        
+        {% if services %}
+            <h2>Results</h2>
+            <small>{{services|length}} results</small>
+            {% include "services/includes/services-listing.html" %}
+        {% endif %}
     </div>
 </div>
 
