@@ -5,23 +5,74 @@
 
 {% block extra_css %}{% endblock extra_css %}
 {% block content %}
+{% comment %} service_category_additions
+division_additions
+funder_policy_additions 
+research_lifecycle_phase_additions {% endcomment %}
 <div class="py-5">
     <div class="container-sm">
         {% for block in page.body %}
             {{ block }}
         {% endfor %}
+
         {% if page.service_url %}
             <div>
                 <a href="{{ page.service_url }}">{{clean_url}}</a>
             </div>
-            <a class="btn btn-primary" href="{{ page.service_url }}" role="button">Go to {{page.title}}</a>
+            <a class="btn btn-primary" href="{{ page.service_url }}" role="button">Access {{page.title}}</a>
         {% endif %}
+
         {% with parent_url=page.get_parent %}
             {% pageurl parent_url as parent_page_url %}
+            {# phases #}
+            {% if page.research_lifecycle_phase_additions.all %}
+                <ul class="list-inline">
+                    {% for research_lifecycle_phase_addition in page.research_lifecycle_phase_additions.all %}
+                        <li class="list-inline-item">
+                            <a class="btn btn-sm btn-secondary" href="{{ parent_page_url }}phase/{{ research_lifecycle_phase_addition.phase.slug }}">
+                                <i class="fa-solid fa-tag"></i>
+                                {{research_lifecycle_phase_addition.phase.name}}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {# CATEGORIES #}
             {% if page.service_category_additions.all %}
-                <ul>
+                <ul class="list-inline">
                     {% for service_addition in page.service_category_additions.all %}
-                        <li class="category {{ service_addition.category.slug }}"><a href="{{ parent_page_url }}category/{{ service_addition.category.slug }}">{{ service_addition.category.name }}</a></li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-sm btn-secondary" href="{{ parent_page_url }}category/{{ service_addition.category.slug }}">
+                                <i class="fa-solid fa-tag"></i>
+                                {{service_addition.category.name}}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {# DIVISION division_additions #}
+            {% if page.division_additions.all %}
+                <ul class="list-unstyled">
+                    {% for division_addition in page.division_additions.all %}
+                        <li class="list-inline-item">
+                            <a class="" href="{{ parent_page_url }}division/{{ division_addition.division.slug }}">
+                                <i class="fa-solid fa-building"></i>
+                                {{division_addition.division.name}}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {# FUNDER POLICIES funder_policy_additions #}
+            {% if page.funder_policy_additions.all %}
+                <ul class="list-unstyled">
+                    {% for funder_policy_addition in page.funder_policy_additions.all %}
+                        <li class="list-inline-item">
+                            <a class="" href="{{ parent_page_url }}funder_policy/{{ funder_policy_addition.funder_policy.slug }}">
+                                <i class="fa-solid fa-hands-holding-circle"></i>
+                                {{funder_policy_addition.funder_policy.name}}
+                            </a>
+                        </li>
                     {% endfor %}
                 </ul>
             {% endif %}

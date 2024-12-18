@@ -14,7 +14,10 @@
                         <ul class="list-inline">
                             {% for service_addition in page.service_category_additions.all %}
                                 <li class="list-inline-item">
-                                    <span class="badge rounded-pill text-bg-secondary">{{service_addition.category.name}}</span>
+                                    <span class="badge text-bg-secondary">
+                                        <i class="fa-solid fa-tag fa-sm"></i>
+                                        {{service_addition.category.name}}
+                                    </span>
                                 </li>
                             {% endfor %}
                         </ul>
