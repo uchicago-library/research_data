@@ -42,10 +42,13 @@
         {% endcompress %}
         {% block extra_css %}{% endblock extra_css %}
     </head>
+    {% include "base/includes/google_analytics_tag.html" %}
+    
     <body class="d-flex flex-column h-100 {% block body_class %}{% endblock %}">
         {% include "base/includes/header.html" %}
         {% load wagtailuserbar %}
         {% wagtailuserbar %}
+
 
         <main class="flex-shrink-0"> {# This makes the footer stick to the bottom of the page in really small pages #}
             
@@ -84,5 +87,6 @@
         <link href="{% static "base/css/base.scss" %}" rel="stylesheet" type="text/x-scss"/>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
         <script src="{% static "base/bootstrap/dist/js/bootstrap.min.js" %}" ></script>
+        {% block extra_scripts %}{% endblock extra_scripts %}
     </body>
 </html>

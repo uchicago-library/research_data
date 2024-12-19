@@ -13,7 +13,8 @@
             <div class="pb-3">
                 {% if page.service_url %}
                     <div class="text-center py-2">
-                        <a class="btn btn-primary" href="{{ page.service_url }}" role="button">Access {{page.title}}</a>
+                        {# the id and data-event-label serve to trigger a GA4 event #}
+                        <a id="service_click_button" class="btn btn-primary" href="{{ page.service_url }}" role="button" data-event-label="{{page.title}}">Access {{page.title}}</a>
                     </div>
                 {% endif %}
             </div>
@@ -99,4 +100,16 @@
         </div>
     </div>
 </div>
+
 {% endblock content %}
+
+{% block extra_scripts %}
+<script>
+    document.getElementById('service_click_button').addEventListener('click', function() {
+        var eventLabel = this.getAttribute('data-event-label');
+        gtag('event', 'service_click', {
+            'event_label': eventLabel
+        });
+    });
+</script>
+{% endblock extra_scripts %}
