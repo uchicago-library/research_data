@@ -7,7 +7,8 @@
         <h2>{{ value.heading }}</h2>
         <a href="{{page_chosen.url}}">View all</a>
     </div>
-{% if page_chosen.url == "/news/" %}
+
+    {% if value.page.content_type.model == "newsindexpage" %}
 
         {% include "news/includes/news_listing.html" with hide_excerpt=True h3_headings=True news_items=page_chosen.get_children.live.in_menu|limit:value.count %}
 
