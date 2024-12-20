@@ -103,6 +103,7 @@
 
 {% endblock content %}
 
+{% if ".uchicago.edu" in request.get_host %}
 {% block extra_scripts %}
 <script>
     document.getElementById('service_click_button').addEventListener('click', function() {
@@ -113,3 +114,6 @@
     });
 </script>
 {% endblock extra_scripts %}
+{% else %}
+  <!-- DEV mode, no GA4 script -->
+{% endif %}

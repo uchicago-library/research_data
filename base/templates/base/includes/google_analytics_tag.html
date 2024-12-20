@@ -1,9 +1,13 @@
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W4N1NGH4DT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+{% if ".uchicago.edu" in request.get_host %}
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4N1NGH4DT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-W4N1NGH4DT');
-</script>
+    gtag('config', 'G-W4N1NGH4DT');
+  </script>
+{% else %}
+  <!-- DEV mode, no GA4 script -->
+{% endif %}
