@@ -3,23 +3,44 @@
 
 {% block body_class %}template-services-listing-page{% endblock %}
 
+{% block title %}
+    {% if service_filter_name %}
+        {{ service_filter_name }} Services
+    {% elif request.GET.q %}
+        Services with: {{ request.GET.q }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+{% endblock title %}
+
+{% block banner_title %}
+    {% if service_filter_name %}
+        {{ service_filter_name }} Services
+    {% elif request.GET.q %}
+        Services with: {{ request.GET.q }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+    {# TODO: This does not consider if one of the additions is checked out. #}
+{% endblock banner_title %}
+
 {% block extra_css %}{% endblock extra_css %}
 {% block content %}
-    {% for block in page.body %}
-        {{ block }}
-    {% endfor %}
-    <form method="get" action="{% pageurl page %}">
-        <input type="text" name="q" placeholder="Search services...">
-        <button type="submit">Search</button>
-    </form>
-    {% if phases %}
-        <ul>
-            {% for phase in phases %}
-                <li class="filter {{ phase.slug }}"><a href="{% pageurl page %}phase/{{ phase.slug }}">{{ phase.name }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 
-    {% include "services/includes/services.html" %}
+    <div class="py-5">
+        {% include "base/includes/body.html" %}
+        <div class="container-sm">
+
+            {% include "services/includes/services-filters.html" %}
+            
+            {% if services %}
+                {% comment %} <div class="mb-3">
+                    <h2>Results</h2>
+                    <small>{{services|length}} results</small>
+                </div>  {% endcomment %}
+                {% include "services/includes/services-listing.html" %}
+            {% endif %}
+        </div>
+    </div>
 
 {% endblock content %}

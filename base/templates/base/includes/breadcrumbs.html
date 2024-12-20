@@ -1,5 +1,5 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
-{% if not request.path == "/" %}
+{% if not request.path == "/" %} {# The template checks for this, but we check again :) #}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb py-1 smaller-text">
             {% for page in self.get_ancestors %}
@@ -7,7 +7,7 @@
                     <li class="breadcrumb-item"><a href="{% pageurl page %}">{{ page.title }}</a></li>
                 {% endif %}
             {% endfor %}
-            <li class="breadcrumb-item active" aria-current="page"><a href="{% pageurl self %}">{{ self.title }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ self.title }}</li>
         </ol>
     </nav>
 {% endif %}
