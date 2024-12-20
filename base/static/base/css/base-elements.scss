@@ -1,25 +1,67 @@
+// ELEMENTS
 a{
     @extend .focus-ring !optional;
-}
-header {
-    .nav-link{
-        color: rgba(255, 255, 255, 0.85);
-        border-color: rgba(255, 255, 255, 0.35);
-        &:hover{
-            border-bottom: 2px solid rgba(255, 255, 255, 0.35);
-            color: white;
-        }
-        @media (min-width: 768px) {
-            &.active{
-                border-bottom: 2px solid white;
-            }
-        }
-    }
 }
 .smaller-text{
     font-size: smaller;
 }
-#news-listing{
+.text-bg-dark.white-links{
+    // --bs-link-color-rgb: 255,255,255;
+    // --bs-link-hover-color-rgb: 255,255,255;
+    a{
+        text-decoration: none;
+        color: white;
+        &:hover{
+            color: white;
+            text-decoration: underline;
+        }
+    }
+}
+img.richtext-image.full-width {
+    max-width: 100%;
+    height: auto;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+img.richtext-image.left{
+    max-width: 100%;
+    float: left !important;
+    margin-right: .5rem;
+}
+img.richtext-image.right{
+    max-width: 100%;
+    float: right !important;
+    margin-left: .5rem;
+}
+
+// GENERAL COMPONENTS
+// .navbar-nav {
+//     --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
+//     --bs-nav-link-color: var(--bs-navbar-color);
+// }
+.navbar-dark, .navbar[data-bs-theme="dark"]{
+    --bs-navbar-hover-color: rgba(255, 255, 255, 1);
+    --bs-navbar-color: rgba(255, 255, 255, 0.85);
+}
+.nav-underline .nav-link.active, 
+.nav-underline .show > .nav-link{
+    font-weight: 600;
+}
+.bg-primary .breadcrumb{
+    --bs-breadcrumb-divider-color: #bababa;
+    --bs-breadcrumb-item-active-color: #bababa; 
+    --bs-link-color: #bababa; 
+    --bs-link-color-rgb: 186,186,186;
+    --bs-link-hover-color: #ffffff;
+    --bs-link-hover-color-rgb: 255, 255, 255;
+}
+// .breadcrumb{ --bs-breadcrumb-margin-bottom: 0; }
+
+// SPECIFIC COMPONENTS
+.news-listing{
     a{
         display: block;
         text-decoration: none;
@@ -27,6 +69,29 @@ header {
         &:hover{
             text-decoration: underline;
             color: var(--bs-link-hover-color);
+        }
+    }
+    article{
+        position: relative;
+    &:hover{
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    }}
+}
+.services-listing .card{
+    // background-color: var(--bs-secondary-bg);
+    // background-color: var(--bs-primary-bg-subtle);
+    // background-color: var(--bs-info-bg-subtle);
+    // @extend .shadow-sm;
+    &:hover{
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    }
+    a{
+        display: block;
+        text-decoration: none;
+        color: var(--bs-body-color);
+        &:hover{
+            color: var(--bs-link-hover-color);
+            text-decoration: underline;
         }
     }
 }

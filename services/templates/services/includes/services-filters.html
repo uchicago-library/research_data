@@ -1,0 +1,46 @@
+{% load static wagtailcore_tags %}
+{% pageurl page as base_url %}
+<div class="services-listing-filters row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mb-3">
+    <h2 class="visually-hidden">Search or Filter</h2>
+    {% if phases %}
+    <div class="col">
+        <div class="btn-group mb-2 w-100">
+            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="phase-filter" role="listbox"> 
+                {% if service_filter_name %}
+                    Phase: {{service_filter_name}}
+                {% else %}
+                    Research Lifecycle Phase
+                {% endif %}
+            </button>
+                <ul id="phase-filter" class="dropdown-menu">
+                    {% if base_url == request.path %}
+                        <li role="option" aria-selected="true"><a class="dropdown-item active" href="{{base_url}}">All</a></li>
+                    {% else %}
+                        <li role="option"><a class="dropdown-item" href="{{base_url}}">All</a></li>
+                    {% endif%}
+                    {% for phase in phases %}
+                        {%  with phase_url=base_url|add:"phase/"|add:phase.slug|add:"/" %}
+                            {% if phase_url == request.path %}
+                                <li role="option" aria-selected="true"><a class="dropdown-item active" href="{{phase_url}}">{{ phase.name }}</a></li>
+                            {% else %}
+                                <li role="option"><a class="dropdown-item" href="{{phase_url}}">{{ phase.name }}</a></li>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    <div class="col">
+        <form method="get" action="{% pageurl page %}">
+            <div class="input-group input-group-sm mb-2">
+                <input class="form-control" type="text" name="q" placeholder='Try "social"' aria-label="Search term search" aria-describedby="button-search-servcies" value="{{request.GET.q}}">
+                <button class="btn btn-outline-secondary" type="submit" id="button-search-servcies"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </form>
+    </div>
+    <div class="col">
+        <small>{{services|length}} results</small>
+    </div>
+    
+</div>

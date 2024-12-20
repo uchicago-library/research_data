@@ -139,7 +139,7 @@ class AbstractBasePage(Page):
     )
 
     show_nested_children = models.BooleanField(
-        default=False, help_text="Check this to display nested child pages."
+        default=True, help_text="Check this to display nested child pages."
     )
 
     nested_children_depth = models.PositiveIntegerField(
@@ -148,6 +148,8 @@ class AbstractBasePage(Page):
     )
 
     content_panels = Page.content_panels + [FieldPanel('body')]
+    
+    show_in_menus_default = True
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
