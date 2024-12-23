@@ -235,13 +235,8 @@ class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
 
         """
         phase_map = {
-            "analyze-collaborate":"Analyze & Collaborate",
-            "collect-create":"Collect & Create",
-            "evaluate-archive":"Evaluate & Archive",
-            "plan-design":"Plan & Design",
-            "publish-reuse":"Publish & Reuse",
-            "share":"Share",
-            "store-manage":"Store & Manage",
+            phase.slug: phase.name 
+            for phase in ResearchLifecyclePhase.objects.all()
         }
         
         services = self.get_children().live().type(ServicePage).specific()

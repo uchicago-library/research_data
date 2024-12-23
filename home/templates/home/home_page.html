@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row py-lg-5">
                     <div class="col-lg-6 col-lg-8 mx-auto">
-                        <h2 class="">{{page.cta_heading}}</h2>
+                        {% if page.cta_heading %}<h2 class="">{{page.cta_heading}}</h2>{% endif %}
                         <p class="lead text-body-secondary">{{page.cta_text|richtext}}</p>
                         {% if page.cta_button_link and page.cta_button_text %}
                             <p><a href="{{page.cta_button_link}}" class="btn btn-light my-2">{{page.cta_button_text}}</a></p>
