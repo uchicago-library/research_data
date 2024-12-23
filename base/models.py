@@ -1,8 +1,6 @@
 # from django.db import models
 from django.db import models
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, PageChooserPanel
-from wagtail.documents.blocks import DocumentChooserBlock
-from wagtail.images.blocks import ImageChooserBlock
 from wagtail.blocks import (
     CharBlock,
     IntegerBlock,
@@ -13,7 +11,9 @@ from wagtail.blocks import (
     URLBlock,
 )
 from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
+from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.fields import StreamField
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
 from wagtail.search import index
 
@@ -56,6 +56,7 @@ class LinkFields(models.Model):
     class Meta:
         abstract = True
 
+
 class ImageLink(StructBlock):
     """
     Normal image for web exhibits.
@@ -87,6 +88,7 @@ class ImageLink(StructBlock):
     class Meta:
         icon = 'image'
         template = 'base/blocks/image_link.html'
+
 
 class Logo(LinkFields):
     """
@@ -143,7 +145,7 @@ class DefaultBodyFields(StreamBlock):
         icon='title',
         template='base/blocks/h5.html',
     )
-    
+
     image_link = ImageLink(
         label="Linked Image",
         help_text='A fancy link made out of a thumbnail and simple text. It will link to either the page, the document, or to the external, depending on the first to be non-empty.',
@@ -188,7 +190,7 @@ class AbstractBasePage(Page):
     )
 
     content_panels = Page.content_panels + [FieldPanel('body')]
-    
+
     show_in_menus_default = True
 
     search_fields = Page.search_fields + [
