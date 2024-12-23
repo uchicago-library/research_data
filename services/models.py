@@ -232,7 +232,12 @@ class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
 
         Returns:
             A context override for the sercies variable.
+
         """
+        phase_map = {
+            phase.slug: phase.name for phase in ResearchLifecyclePhase.objects.all()
+        }
+
         services = self.get_children().live().type(ServicePage).specific()
 
         if slug:
@@ -243,6 +248,7 @@ class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
             request,
             context_overrides={
                 'services': services,
+                'service_filter_name': phase_map.get(slug, False),
             },
         )
 

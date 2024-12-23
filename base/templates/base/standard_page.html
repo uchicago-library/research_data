@@ -1,13 +1,20 @@
 {% extends "base/base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags basic_tags %}
+
 
 {% block body_class %}template-standardpage{% endblock %}
 
 {% block extra_css %}{% endblock extra_css %}
 
 {% block content %}
-    {% for block in page.body %}
-        {{ block }}
-    {% endfor %}
-    {% include "services/includes/services.html" %}
+    {% include "base/includes/body.html" %}
+    
+    {% include "base/includes/child_pages_listing.html" %}
+
+    {% if services %}
+        <div class="container-sm pb-5">
+            <h2>Services</h2>
+            {% include "services/includes/services-listing.html" %}
+        </div>
+    {% endif %}
 {% endblock content %}

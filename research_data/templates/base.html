@@ -33,12 +33,14 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-
-        {% block content %}
-            {% for block in page.body %}
-                {{ block }}
-            {% endfor %}
-        {% endblock content %}
+        
+        <div class="overflow-auto">
+            {% block content %}
+                {% for block in page.body %}
+                    {{ block }}
+                {% endfor %}
+            {% endblock content %}
+        </div>
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/research_data.js' %}"></script>

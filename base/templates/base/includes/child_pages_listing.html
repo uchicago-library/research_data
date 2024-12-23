@@ -1,0 +1,10 @@
+{% load basic_tags %}
+
+{% if page.show_nested_children and page.get_children.exists %}
+<nav class="container-sm  pb-3 pb-lg-5">
+    <h2>Further Reading</h2>
+    <ul class="nav flex-column">
+        {% render_nested_pages page page.nested_children_depth %}
+    </ul>
+</nav>
+{% endif %}
