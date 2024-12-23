@@ -235,10 +235,9 @@ class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
 
         """
         phase_map = {
-            phase.slug: phase.name 
-            for phase in ResearchLifecyclePhase.objects.all()
+            phase.slug: phase.name for phase in ResearchLifecyclePhase.objects.all()
         }
-        
+
         services = self.get_children().live().type(ServicePage).specific()
 
         if slug:
