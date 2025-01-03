@@ -145,9 +145,7 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, "static"),
-]
+STATICFILES_DIRS = []
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
