@@ -7,7 +7,12 @@
 {% block extra_css %}{% endblock extra_css %}
 
 {% block content %}
-    {% include "base/includes/body.html" %}
+    
+    {% if page.body %}
+        {% include "base/includes/body.html" %}
+    {% else %}
+        <div class="container-sm pb-5"></div>
+    {% endif %}
     
     {% include "base/includes/child_pages_listing.html" %}
 
