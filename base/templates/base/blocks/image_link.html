@@ -1,5 +1,5 @@
 {% load wagtailimages_tags %}
-{% image value.link_image width-400 as thumbnail %}
+{% image value.link_image height-200 as thumbnail %}
 <div class="col-12 col-sm-6 col-md-4 mx-auto" >
     <div class="linked-image text-bg-dark white-links position-relative mb-3 mx-auto" style="background-image: url('{{ thumbnail.url }}')">
         {% comment %} {% if value.link_image %} 
@@ -7,7 +7,7 @@
         {% endif %} {% endcomment %}
 
         <a class="stretched-link" href="{% firstof value.link_page.url value.link_document.url value.link_external %}">
-            <span></span>
+            <span>{# scrim #}</span>
             <span>
                 {% if value.link_text %}
                     {{value.link_text}}
