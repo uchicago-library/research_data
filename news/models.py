@@ -23,7 +23,7 @@ class NewsIndexPage(AbstractBasePage):
     def get_context(self, request):
         context = super().get_context(request)
 
-        child_pages = self.get_children().live().specific()
+        child_pages = self.get_children().live().specific().order_by('-first_published_at')
 
         news_listing_settings = NewsListingSettings.for_request(request=request)
 

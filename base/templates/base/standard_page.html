@@ -7,9 +7,24 @@
 {% block extra_css %}{% endblock extra_css %}
 
 {% block content %}
-    {% include "base/includes/body.html" %}
+
+    {% if not page.body and not services %}
+        {% if not page.show_nested_children or not page.get_children.live.in_menu.exists %}
+            <div class="container-sm py-5">
+                <p class="lead">No content to display</p>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    {% if page.body %}
+        {% include "base/includes/body.html" %}
+    {% else %}
+        <div class="container-sm pb-5"></div>
+    {% endif %}
     
-    {% include "base/includes/child_pages_listing.html" %}
+    {% if page.show_nested_children and page.get_children.live.in_menu.exists %}
+        {% include "base/includes/child_pages_listing.html" %}
+    {% endif %}
 
     {% if services %}
         <div class="container-sm pb-5">
@@ -17,4 +32,5 @@
             {% include "services/includes/services-listing.html" %}
         </div>
     {% endif %}
+
 {% endblock content %}
