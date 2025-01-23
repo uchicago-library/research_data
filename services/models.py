@@ -253,6 +253,9 @@ class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
         phase_map = {
             phase.slug: phase.name for phase in ResearchLifecyclePhase.objects.all()
         }
+        division_map = {
+            division.slug: division.name for division in Division.objects.all()
+        }
 
         services = self.get_children().live().type(ServicePage).specific()
 
@@ -265,6 +268,7 @@ class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
             context_overrides={
                 'services': services,
                 'service_filter_name': phase_map.get(slug, False),
+                'division_filter_name': division_map.get(slug, False),
             },
         )
 
@@ -315,6 +319,8 @@ class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
         context = super(ServicesListingPage, self).get_context(request)
 
         services = self.get_children().live().type(ServicePage).specific()
+        phases = ResearchLifecyclePhase.objects.all()
+        divisions = Division.objects.all()
 
         query = request.GET.get('q')
 
@@ -324,5 +330,6 @@ class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
 
         context['services'] = services
         context['phases'] = [order.phase for order in self.phase_menu.all()]
+        context['divisions'] = divisions
 
         return context
