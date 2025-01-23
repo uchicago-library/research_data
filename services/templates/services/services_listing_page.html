@@ -6,6 +6,8 @@
 {% block title %}
     {% if service_filter_name %}
         {{ service_filter_name }} Services
+    {% elif division_filter_name %}
+        {{ division_filter_name }} Services
     {% elif request.GET.q %}
         Services with: {{ request.GET.q }}
     {% else %}
@@ -16,6 +18,8 @@
 {% block banner_title %}
     {% if service_filter_name %}
         {{ service_filter_name }} Services
+    {% elif division_filter_name %}
+        {{ division_filter_name }} Services
     {% elif request.GET.q %}
         Services with: {{ request.GET.q }}
     {% else %}
