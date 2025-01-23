@@ -9,6 +9,7 @@ This website has a development database with test images. Follow the setup instr
 5. Create the database: `./manage.py migrate`
 6. Load the dev database: `./manage.py loaddata dev/fixtures/dev.json`
 7. Load the dev images: `./manage.py load_dev_images`
+8. Index extra services fileds: `./manage.py update_index`
 
 ## Run the site
 1. `./manage.py runserver 0.0.0.0:8000`

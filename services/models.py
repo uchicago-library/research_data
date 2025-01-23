@@ -5,6 +5,7 @@ from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, path
 from wagtail.models import Orderable
+from wagtail.search import index
 from wagtail.search.utils import parse_query_string
 from wagtail.snippets.models import register_snippet
 
@@ -215,6 +216,39 @@ class ServicePage(AbstractBasePage):
         InlinePanel('service_category_additions', label='Categories'),
         InlinePanel('division_additions', label='Divisions'),
         InlinePanel('funder_policy_additions', label='Funder Policies'),
+    ]
+
+    def get_related_lifecycle_phases(self):
+        return '\n'.join(
+            self.research_lifecycle_phase_additions.all().values_list(
+                'phase__name', flat=True
+            )
+        )
+
+    def get_related_divisions(self):
+        return '\n'.join(
+            self.division_additions.all().values_list('division__name', flat=True)
+        )
+
+    def get_related_funder_policies(self):
+        return '\n'.join(
+            self.funder_policy_additions.all().values_list(
+                'funder_policy__name', flat=True
+            )
+        )
+
+    def get_related_categories(self):
+        return '\n'.join(
+            self.service_category_additions.all().values_list(
+                'category__name', flat=True
+            )
+        )
+
+    search_fields = AbstractBasePage.search_fields + [
+        index.SearchField('get_related_lifecycle_phases'),
+        index.SearchField('get_related_divisions'),
+        index.SearchField('get_related_funder_policies'),
+        index.SearchField('get_related_categories'),
     ]
 
     def get_context(self, request):
