@@ -31,11 +31,42 @@
             </div>
         </div>
     {% endif %}
+
+    {% if divisions %}
+    <div class="col">
+        <div class="btn-group mb-2 w-100">
+            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="division-filter" role="listbox"> 
+                {% if division_filter_name %}
+                    Division: {{division_filter_name}}
+                {% else %}
+                    Division
+                {% endif %}
+            </button>
+                <ul id="division-filter" class="dropdown-menu">
+                    {% if base_url == request.path %}
+                        <li role="option" aria-selected="true"><a class="dropdown-item active" href="{{base_url}}">All</a></li>
+                    {% else %}
+                        <li role="option"><a class="dropdown-item" href="{{base_url}}">All</a></li>
+                    {% endif%}
+                    {% for division in divisions %}
+                        {%  with division_url=base_url|add:"division/"|add:division.slug|add:"/" %}
+                            {% if division_url == request.path %}
+                                <li role="option" aria-selected="true"><a class="dropdown-item active" href="{{division_url}}">{{ division.name }}</a></li>
+                            {% else %}
+                                <li role="option"><a class="dropdown-item" href="{{division_url}}">{{ division.name }}</a></li>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+
     <div class="col">
         <form method="get" action="{% pageurl page %}">
             <div class="input-group input-group-sm mb-2">
                 <input class="form-control" type="text" name="q" placeholder='Try "social"' aria-label="Search term search" aria-describedby="button-search-servcies" value="{{request.GET.q}}">
-                <button class="btn btn-outline-secondary" type="submit" id="button-search-servcies"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="btn btn-outline-secondary" type="submit" id="button-search-servcies"><i class="fa-solid fa-magnifying-glass"></i><span class="visually-hidden">Search</span></span></button>
             </div>
         </form>
     </div>
