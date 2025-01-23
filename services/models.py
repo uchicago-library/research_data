@@ -187,6 +187,22 @@ class ServicePageFunderPolicyAddition(Orderable, models.Model):
         return self.page.title + " -> " + self.funder_policy.name
 
 
+class PhaseMenu(Orderable):
+    page = ParentalKey(
+        'ServicesListingPage', related_name='phase_menu', on_delete=models.CASCADE
+    )
+    phase = models.ForeignKey(
+        'ResearchLifecyclePhase', on_delete=models.CASCADE, related_name='+'
+    )
+
+    panels = [
+        FieldPanel('phase'),
+    ]
+
+    def __str__(self):
+        return self.phase.name
+
+
 class ServicePage(AbstractBasePage):
 
     service_url = models.URLField(verbose_name='URL', max_length=300, blank=True)
@@ -292,6 +308,10 @@ class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
         filter_param = 'servicepage__research_lifecycle_phase_additions__phase__slug'
         return self.filter_services(request, filter_param, slug)
 
+    content_panels = AbstractBasePage.content_panels + [
+        InlinePanel('phase_menu', label="Lifecycle phase dropdown menu"),
+    ]
+
     def get_context(self, request):
         """
         Override the page object's get context method.
@@ -309,7 +329,7 @@ class ServicesListingPage(RoutablePageMixin, AbstractBasePage):
             services = services.search(query)
 
         context['services'] = services
-        context['phases'] = phases
+        context['phases'] = [order.phase for order in self.phase_menu.all()]
         context['divisions'] = divisions
 
         return context
