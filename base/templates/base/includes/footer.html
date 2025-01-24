@@ -1,11 +1,7 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
-{% if settings.base.FloatingFooterButton.link and settings.base.FloatingFooterButton.float_btn_text %}
-    <div class="container-sm"> 
-        <a class="btn btn-dark float-end me-3 rounded-bottom-0" href="{{settings.base.FloatingFooterButton.link}}">Feedback!</a>
-    </div>
-{% endif %}
 <footer class="footer mt-auto py-3 bg-dark text-bg-dark white-links">
+    
     <div class="container-sm">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 py-3">
 
@@ -41,4 +37,9 @@
 
         </div>
     </div>
+    {% if settings.base.FloatingFooterButton.link and settings.base.FloatingFooterButton.text %}
+        <div class="container-sm d-flex justify-content-end mt-5" style="position: fixed; z-index: 999; bottom: 0;"> 
+            <a class="btn btn-primary mb-3" href="{{settings.base.FloatingFooterButton.link}}">{{settings.base.FloatingFooterButton.text}}</a>
+        </div>
+    {% endif %}
 </footer>

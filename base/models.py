@@ -116,15 +116,10 @@ class FloatingButton(LinkFields):
     Reusable abstract class a floating button.
     Originally made for a feedback survey link.
     """
-    float_btn_text = CharBlock(
-        required=False,
-        help_text='Text for the floating button. "Feedback" works well.',
-    )
-    float_btn_link = URLBlock(required=False)
+    text = models.CharField(max_length=255, blank=True, help_text="Text to display on the button")
 
     content_panels = LinkFields.content_panels + [
-        FieldPanel('float_btn_text'),
-        FieldPanel('float_btn_link'),
+        FieldPanel('text'),
     ]
 
     class Meta:
