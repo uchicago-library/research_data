@@ -1,5 +1,10 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
+{% if settings.base.FloatingFooterButton.link and settings.base.FloatingFooterButton.float_btn_text %}
+    <div class="container-sm"> 
+        <a class="btn btn-dark float-end me-3 rounded-bottom-0" href="{{settings.base.FloatingFooterButton.link}}">Feedback!</a>
+    </div>
+{% endif %}
 <footer class="footer mt-auto py-3 bg-dark text-bg-dark white-links">
     <div class="container-sm">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 py-3">

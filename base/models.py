@@ -111,35 +111,36 @@ class Logo(LinkFields):
     class Meta:
         abstract = True
 
-
-@register_setting
-class MainLogo(BaseGenericSetting, Logo):
-    pass
-
-
-@register_setting
-class FooterSettings(BaseGenericSetting, Logo):
+class FloatingButton(LinkFields):
+    """
+    Reusable abstract class a floating button.
+    Originally made for a feedback survey link.
+    """
     float_btn_text = CharBlock(
         required=False,
         help_text='Text for the floating button. "Feedback" works well.',
     )
     float_btn_link = URLBlock(required=False)
 
-    content_panels =[ 
-        MultiFieldPanel(
-            Logo.content_panels,
-            heading='Footer Logo',
-            help_text="Add a logo to the footer that links somewhrer (typically to the homepage).",
-        ),
-        MultiFieldPanel([
-            FieldPanel('float_btn_text'),
-            FieldPanel('float_btn_link'),
-            ],
-            heading='Footer Floating Button',
-            help_text="Add a link to the footer that is always visible. (originally made for a feedback survey link)",
-        ),
+    content_panels = LinkFields.content_panels + [
+        FieldPanel('float_btn_text'),
+        FieldPanel('float_btn_link'),
     ]
 
+    class Meta:
+        abstract = True
+
+
+@register_setting
+class MainLogo(BaseGenericSetting, Logo):
+    pass
+
+@register_setting
+class FooterLogo(BaseGenericSetting, Logo):
+    pass
+
+@register_setting
+class FloatingFooterButton(BaseGenericSetting, FloatingButton):
     pass
 
 
