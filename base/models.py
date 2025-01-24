@@ -18,26 +18,31 @@ from wagtail.models import Page
 from wagtail.search import index
 
 
-class LinkFields(models.Model):
-    """
-    Reusable abstract class for general links.
-    """
-
-    link_external = models.URLField("External link", blank=True)
-    link_page = models.ForeignKey(
-        'wagtailcore.Page',
-        null=True,
-        blank=True,
-        related_name='+',
-        on_delete=models.SET_NULL,
-    )
-    link_document = models.ForeignKey(
-        'wagtaildocs.Document',
-        null=True,
-        blank=True,
-        related_name='+',
-        on_delete=models.SET_NULL,
-    )
+class LinkFieldsMixin:
+    """Reusable mixin for general links."""
+    
+    @classmethod
+    def get_link_fields(cls, prefix):
+        """
+        Generate multiple fields for a logo entity with a given prefix.
+        """
+        return {
+            f"{prefix}_external": models.URLField("External link", blank=True),
+            f"{prefix}_page": models.ForeignKey(
+                'wagtailcore.Page',
+                null=True,
+                blank=True,
+                related_name='+',
+                on_delete=models.SET_NULL,
+            ),
+            f"{prefix}_document": models.ForeignKey(
+                'wagtaildocs.Document',
+                null=True,
+                blank=True,
+                related_name='+',
+                on_delete=models.SET_NULL,
+            ),
+        }
 
     @property
     def link(self):
@@ -48,13 +53,10 @@ class LinkFields(models.Model):
         else:
             return self.link_external
 
-    content_panels = [
-        PageChooserPanel('link_page'),
-        FieldPanel('link_external'),
-    ]
-
-    class Meta:
-        abstract = True
+    # content_panels = [
+    #     PageChooserPanel('link_page'),
+    #     FieldPanel('link_external'),
+    # ]
 
 
 class ImageLink(StructBlock):
@@ -90,12 +92,13 @@ class ImageLink(StructBlock):
         template = 'base/blocks/image_link.html'
 
 
-class Logo(LinkFields):
+class Logo(LinkFieldsMixin):
     """
     Reusable abstract class for logos.
     """
+    locals().update(LinkFieldsMixin.get_link_fields("logo"))
 
-    image = models.ForeignKey(
+    logo_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -104,13 +107,39 @@ class Logo(LinkFields):
         help_text="Logo image",
     )
 
-    content_panels = LinkFields.content_panels + [
-        FieldPanel('image'),
-    ]
+    # content_panels = LinkFields.content_panels + [
+    #     FieldPanel('image'),
+    # ]
 
     class Meta:
         abstract = True
 
+class FooterFloatingButton(LinkFieldsMixin):
+    """
+    Abstract class for a floating button 
+    for the footer to add a highlighted 
+    link like a feedback form.
+    """
+    locals().update(LinkFieldsMixin.get_link_fields("floating_button"))
+
+    floating_button_button_text = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='Text for the floating button. "Feedback" works well.',
+    )
+    # content_panels = LinkFields.content_panels + [
+    #     FieldPanel('button_text'),
+    # ]
+
+    # content_panels =([ MultiFieldPanel(
+    #     LinkFields.content_panels + [
+    #         FieldPanel('button_text'),
+    #     ],
+    #     help_text="Add a link to the footer that is always visible.",
+    # )])
+
+    class Meta:
+        abstract = True
 
 @register_setting
 class MainLogo(BaseGenericSetting, Logo):
@@ -118,7 +147,34 @@ class MainLogo(BaseGenericSetting, Logo):
 
 
 @register_setting
-class FooterLogo(BaseGenericSetting, Logo):
+class FooterSettings(BaseGenericSetting, Logo, FooterFloatingButton):
+    # panels = [
+    #     FieldPanel('logo_external'),
+    #     FieldPanel('logo_page'),
+    #     FieldPanel('logo_document'),
+    #     FieldPanel('logo_image'),
+    # ]
+    content_panels =([ 
+        MultiFieldPanel([
+            PageChooserPanel('logo_page'),
+            FieldPanel('logo_external'),
+            FieldPanel('logo_document'),
+            FieldPanel('logo_image'),
+        ],
+        help_text="Add a logo with a link to the footer.",),
+        MultiFieldPanel([
+            PageChooserPanel('floating_button_page'),
+            FieldPanel('floating_button_external'),
+            FieldPanel('floating_button_document'),
+            FieldPanel('floating_button_button_text'),
+        ],
+        help_text="Add a link to the footer that is always visible.",),
+        
+    ])
+
+    class Meta:
+        verbose_name = "Footer Settings"
+
     pass
 
 
