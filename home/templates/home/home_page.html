@@ -12,16 +12,26 @@
     {% wagtailuserbar %}
 
     {% if page.cta_heading or page.cta_text or page.cta_button_text or page.cta_background_image %}
-        <section id="homectasection" class="py-5 text-center text-bg-dark {% if page.cta_darken_image %}cta-darkened{% endif %}" style="background-image: url('{% image page.cta_background_image original as bg_img %}{{ bg_img.url }}')">
+        <section id="homectasection" class="py-3 text-center text-bg-dark {% if page.cta_darken_image %}cta-darkened{% endif %}" style="background-image: url('{% image page.cta_background_image original as bg_img %}{{ bg_img.url }}')">
             <div class="container">
-                <div class="row py-lg-5">
+                <div class="row py-lg-3">
                     <div class="col-lg-6 col-lg-8 mx-auto">
                         {% if page.cta_heading %}<h2 class="">{{page.cta_heading}}</h2>{% endif %}
-                        <p class="lead text-body-secondary">{{page.cta_text|richtext}}</p>
+                        {% if page.cta_text %}<p class="lead text-body-secondary">{{page.cta_text|richtext}}</p>{% endif %}
                         {% if page.cta_button_link and page.cta_button_text %}
                             <p><a href="{{page.cta_button_link}}" class="btn btn-light my-2">{{page.cta_button_text}}</a></p>
                         {% elif page.cta_button_page and page.cta_button_text %}
                             <p><a href="{{page.cta_button_page.url}}" class="btn btn-light my-2">{{page.cta_button_text}}</a></p>
+                        {% endif %}
+                        {% if page.cta_show_search %}
+                            <form method="get" action="/services">
+                                <div class="input-group input-group-sm mb-2">
+                                    <input class="form-control py-2 px-4 rounded-start-pill" type="text" name="q" placeholder='Find data services. Try "social"' aria-label="Search term search" aria-describedby="button-search-servcies">
+                                    <button class="btn btn-light py-2 px-4 rounded-end-pill" type="submit" id="button-search-servcies">
+                                        <i class="fa-solid fa-magnifying-glass"></i><span class="visually-hidden">Search</span></span>
+                                    </button>
+                                </div>
+                            </form>
                         {% endif %}
                     </div>
                 </div>
