@@ -111,12 +111,16 @@ class Logo(LinkFields):
     class Meta:
         abstract = True
 
+
 class FloatingButton(LinkFields):
     """
     Reusable abstract class a floating button.
     Originally made for a feedback survey link.
     """
-    text = models.CharField(max_length=255, blank=True, help_text="Text to display on the button")
+
+    text = models.CharField(
+        max_length=255, blank=True, help_text="Text to display on the button"
+    )
 
     content_panels = LinkFields.content_panels + [
         FieldPanel('text'),
@@ -130,9 +134,11 @@ class FloatingButton(LinkFields):
 class MainLogo(BaseGenericSetting, Logo):
     pass
 
+
 @register_setting
 class FooterLogo(BaseGenericSetting, Logo):
     pass
+
 
 @register_setting
 class FloatingFooterButton(BaseGenericSetting, FloatingButton):

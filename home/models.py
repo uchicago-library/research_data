@@ -1,17 +1,23 @@
-from base.models import AbstractBasePage, SectionBlock
 from django.db import models
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import RichTextField, StreamField
+
+from base.models import AbstractBasePage, SectionBlock
 
 
 class HomePage(AbstractBasePage):
     subpage_types = ['base.StandardPage', 'news.NewsIndexPage']
 
-    cta_heading = models.CharField(
-        verbose_name="Heading",
-        max_length=100, blank=True)
-    cta_text = RichTextField(verbose_name="Text",blank=True, features=['bold'])
-    cta_button_text = models.CharField(verbose_name="Button Text",max_length=100, blank=True)
+    cta_heading = models.CharField(verbose_name="Heading", max_length=100, blank=True)
+    cta_text = RichTextField(verbose_name="Text", blank=True, features=['bold'])
+    cta_button_text = models.CharField(
+        verbose_name="Button Text", max_length=100, blank=True
+    )
+    cta_show_search = models.BooleanField(
+        default=False,
+        verbose_name="Show a services Search Bar?",
+        help_text="Check this box to show a search bar inside the banner that links directly to the '/services' page. Note that a '/services' page must exist for this to work.",
+    )
     cta_button_link = models.URLField(
         verbose_name="Button external link override",
         blank=True,
@@ -54,6 +60,7 @@ class HomePage(AbstractBasePage):
                 [
                     FieldPanel('cta_heading'),
                     FieldPanel('cta_text'),
+                    FieldPanel('cta_show_search'),
                     FieldPanel('cta_button_text'),
                     FieldPanel('cta_button_link'),
                     FieldPanel('cta_button_page'),
