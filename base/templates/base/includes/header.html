@@ -9,6 +9,8 @@
                     <a class="navbar-brand" href="{{main_logo_link}}">{% picture main_logo_img format-{avif,webp,jpeg} width-{200} alt="University of Chicago Logo" %}</a>
                 {% elif main_logo_img %}
                     {% picture main_logo_img format-{avif,webp,jpeg} width-{200} alt="University of Chicago Logo" %}
+                {% elif main_logo_link %}
+                    <a class="navbar-brand" href="{{main_logo_link}}">Research Data</a>
                 {% endif %}
             {% endwith %}
             
