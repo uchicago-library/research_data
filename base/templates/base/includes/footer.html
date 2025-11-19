@@ -18,21 +18,18 @@
        
             <div class="col my-3 order-md-last">
                 <h2 class="h5">Research Data</h2>
-                {% if site_root.get_children.live.in_menu %}
-                    <ul class="nav flex-column" role="navigation">
-                        {% for menuitem in site_root.get_children.live.in_menu %}
-                            <li class="nav-item mb-2"><a class="nav-link p-0" href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                <p class="text-muted">Your gateway to research data management and resources at the University of Chicago.</p>
             </div>    
 
             <div class="col my-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a class="nav-link p-0" href="/privacy-policy">Privacy Policy</a></li>
-                    <li class="nav-item mb-2"><a class="nav-link p-0" href="/contact-us">Contact Us</a></li>
-                    <li class="nav-item mb-2"><a class="nav-link p-0" href="/admin">Staff Login</a></li>
-                </ul>
+                <h3 class="h6">Quick Links</h3>
+                <nav aria-label="Footer navigation">
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a class="nav-link p-0" href="/privacy-policy">Privacy Policy</a></li>
+                        <li class="nav-item mb-2"><a class="nav-link p-0" href="/contact-us">Contact Us</a></li>
+                        <li class="nav-item mb-2"><a class="nav-link p-0" href="/admin">Staff Login</a></li>
+                    </ul>
+                </nav>
             </div>
 
         </div>
