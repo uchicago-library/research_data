@@ -134,3 +134,21 @@ img.richtext-image.right{
         background: var(--bs-secondary-bg-subtle);
     }
 }
+.template-service-page{
+    .badge{
+        // Category badges (secondary style)
+        color: var(--bs-secondary-color);
+        background: var(--bs-secondary-bg-subtle);
+        &:hover{
+            color: var(--bs-link-hover-color);
+        }
+        // Phase badges with primary background
+        &.text-bg-primary{
+            color: #fff;
+            background: var(--bs-primary);
+            &:hover{
+                opacity: 0.9;
+            }
+        }
+    }
+}
