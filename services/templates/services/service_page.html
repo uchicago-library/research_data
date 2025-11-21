@@ -37,7 +37,7 @@
                                     <ul class="list-inline">
                                         {% for research_lifecycle_phase_addition in page.research_lifecycle_phase_additions.all %}
                                             <li class="list-inline-item mb-3">
-                                                <a class="badge text-bg-primary text-decoration-none" href="{{ parent_page_url }}phase/{{ research_lifecycle_phase_addition.phase.slug }}">
+                                                <a class="badge text-bg-primary" href="{{ parent_page_url }}phase/{{ research_lifecycle_phase_addition.phase.slug }}">
                                                     {{research_lifecycle_phase_addition.phase.name}}
                                                 </a>
                                             </li>
@@ -52,7 +52,7 @@
                                     <ul class="list-inline">
                                         {% for service_addition in page.service_category_additions.all %}
                                             <li class="list-inline-item mb-3">
-                                                <a class="badge text-decoration-none" href="{{ parent_page_url }}category/{{ service_addition.category.slug }}">
+                                                <a class="badge" href="{{ parent_page_url }}category/{{ service_addition.category.slug }}">
                                                     {{service_addition.category.name}}
                                                 </a>
                                             </li>
