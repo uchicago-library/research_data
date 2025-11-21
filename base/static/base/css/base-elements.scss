@@ -130,6 +130,7 @@ img.richtext-image.right{
         }
     }
     .badge{
+        // Position badges above the stretched-link pseudo-element (z-index: 1) so they remain clickable
         position: relative;
         z-index: 2;
         color: var(--bs-secondary-color);
