@@ -1,22 +1,27 @@
 // ELEMENTS
-a{
+a {
     @extend .focus-ring !optional;
 }
-.smaller-text{
+
+.smaller-text {
     font-size: smaller;
 }
-.text-bg-dark.white-links{
+
+.text-bg-dark.white-links {
+
     // --bs-link-color-rgb: 255,255,255;
     // --bs-link-hover-color-rgb: 255,255,255;
-    a{
+    a {
         text-decoration: none;
         color: white;
-        &:hover{
+
+        &:hover {
             color: white;
             text-decoration: underline;
         }
     }
 }
+
 img.richtext-image.full-width {
     max-width: 100%;
     height: auto;
@@ -26,12 +31,14 @@ img.richtext-image.full-width {
     margin-right: auto;
     display: block;
 }
-img.richtext-image.left{
+
+img.richtext-image.left {
     max-width: 100%;
     float: left !important;
     margin-right: .5rem;
 }
-img.richtext-image.right{
+
+img.richtext-image.right {
     max-width: 100%;
     float: right !important;
     margin-left: .5rem;
@@ -42,22 +49,55 @@ img.richtext-image.right{
 //     --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
 //     --bs-nav-link-color: var(--bs-navbar-color);
 // }
-.navbar-dark, .navbar[data-bs-theme="dark"]{
+.navbar-dark,
+.navbar[data-bs-theme="dark"] {
     --bs-navbar-hover-color: rgba(255, 255, 255, 1);
     --bs-navbar-color: rgba(255, 255, 255, 0.85);
 }
-.nav-underline .nav-link.active, 
-.nav-underline .show > .nav-link{
+
+.nav-underline .nav-link.active,
+.nav-underline .show>.nav-link {
     font-weight: 600;
 }
-.bg-primary .breadcrumb{
+
+.bg-primary .breadcrumb {
     --bs-breadcrumb-divider-color: #bababa;
-    --bs-breadcrumb-item-active-color: #bababa; 
-    --bs-link-color: #bababa; 
-    --bs-link-color-rgb: 186,186,186;
+    --bs-breadcrumb-item-active-color: #bababa;
+    --bs-link-color: #bababa;
+    --bs-link-color-rgb: 186, 186, 186;
     --bs-link-hover-color: #ffffff;
     --bs-link-hover-color-rgb: 255, 255, 255;
 }
+
+.badge {
+    position: relative;
+    z-index: 2;
+    color: var(--bs-secondary-color);
+    background: var(--bs-secondary-bg-subtle);
+
+    // Phase badges with primary background
+    &.text-bg-primary {
+        color: var(--bs-white);
+        background: var(--bs-primary);
+    }
+}
+
+a.badge {
+    text-decoration: none;
+
+    &:hover {
+        color: var(--bs-link-hover-color);
+        text-decoration: underline;
+    }
+
+    // Phase badges with primary background
+    &.text-bg-primary {
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+}
+
 // .breadcrumb{ --bs-breadcrumb-margin-bottom: 0; }
 
 // SPECIFIC COMPONENTS
@@ -67,6 +107,7 @@ img.richtext-image.right{
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
+
     span {
         position: absolute;
         bottom: 0;
@@ -79,58 +120,68 @@ img.richtext-image.right{
         align-content: center;
         transition: all 1s ease-out;
     }
+
     span:first-child {
         background: #000000ad;
         background: linear-gradient(#00000000, #00000080 42%, #000000d0 90%);
     }
+
     span:last-child {
         font-size: 1.1rem;
         font-weight: 600;
     }
-    a:hover{
+
+    a:hover {
         span:first-child {
             height: 80%;
-        }    
+        }
+
         span:last-child {
             text-decoration: underline;
         }
     }
 }
-.news-listing{
-    a{
+
+.news-listing {
+    a {
         display: block;
         text-decoration: none;
         color: var(--bs-body-color);
-        &:hover{
+
+        &:hover {
             text-decoration: underline;
             color: var(--bs-link-hover-color);
         }
     }
-    article{
+
+    article {
         position: relative;
-    &:hover{
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
-    }}
+
+        &:hover {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+        }
+    }
 }
-.services-listing .card{
+
+.services-listing .card {
+
     // background-color: var(--bs-secondary-bg);
     // background-color: var(--bs-primary-bg-subtle);
     // background-color: var(--bs-info-bg-subtle);
     // @extend .shadow-sm;
-    &:hover{
+    &:hover {
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
     }
-    a{
+
+    a {
         display: block;
         text-decoration: none;
         color: var(--bs-body-color);
-        &:hover{
+
+        &:hover {
             color: var(--bs-link-hover-color);
             text-decoration: underline;
         }
     }
-    .badge{
-        color: var(--bs-secondary-color);
-        background: var(--bs-secondary-bg-subtle);
-    }
+
 }

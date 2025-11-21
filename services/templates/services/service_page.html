@@ -5,115 +5,114 @@
 
 {% block extra_css %}{% endblock extra_css %}
 {% block content %}
-{% include "base/includes/body.html" %}
+    {% include "base/includes/body.html" %}
 
-<div class="container-sm pb-3 pb-lg-5">
-    <div class="row">
-        <div class="col col-lg-8">
-            <div class="pb-3">
-                {% if page.service_url %}
-                    <div class="text-center py-2">
+    <div class="container-sm pb-3 pb-lg-5">
+        <div class="row">
+            <div class="col col-lg-8">
+                <div class="pb-3">
+                    {% if page.service_url %}
+                        <div class="text-center py-2">
                         {# the id and data-event-label serve to trigger a GA4 event #}
-                        <a id="service_click_button" class="btn btn-primary" href="{{ page.service_url }}" role="button" data-event-label="{{page.title}}">Access {{page.title}}</a>
-                    </div>
-                {% endif %}
-            </div>
-            
-            <div class="pb-3">
-                {% with parent_url=page.get_parent %}
-                    {% pageurl parent_url as parent_page_url %}
-                    <dl class="row">
+                            <a id="service_click_button" class="btn btn-primary" href="{{ page.service_url }}" role="button" data-event-label="{{page.title}}">Access {{page.title}}</a>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="pb-3">
+                    {% with parent_url=page.get_parent %}
+                        {% pageurl parent_url as parent_page_url %}
+                        <dl class="row">
                         {# url #}
-                        {% if page.service_url %}
-                                    <dt class="col-sm-3 col-lg-2">URL</dt>
-                                    <dd class="col-sm-9 col-lg-10">
-                                        <p><a href="{{ page.service_url }}">{{clean_url}}</a></p>
-                                    </dd>
-                        {% endif %}
+                            {% if page.service_url %}
+                                <dt class="col-sm-3 col-lg-2">URL</dt>
+                                <dd class="col-sm-9 col-lg-10">
+                                    <p><a href="{{ page.service_url }}">{{clean_url}}</a></p>
+                                </dd>
+                            {% endif %}
                         {# phases #}
-                        {% if page.research_lifecycle_phase_additions.all %}
-                                    <dt class="col-sm-3 col-lg-2">Phase</dt>
-                                    <dd class="col-sm-9 col-lg-10">
-                                        <ul class="list-inline">
-                                            {% for research_lifecycle_phase_addition in page.research_lifecycle_phase_additions.all %}
-                                                <li class="list-inline-item">
-                                                    <a class="btn btn-sm btn-primary" href="{{ parent_page_url }}phase/{{ research_lifecycle_phase_addition.phase.slug }}">
-                                                        {{research_lifecycle_phase_addition.phase.name}}
-                                                    </a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </dd>
-                        {% endif %}
+                            {% if page.research_lifecycle_phase_additions.all %}
+                                <dt class="col-sm-3 col-lg-2">Phase</dt>
+                                <dd class="col-sm-9 col-lg-10">
+                                    <ul class="list-inline">
+                                        {% for research_lifecycle_phase_addition in page.research_lifecycle_phase_additions.all %}
+                                            <li class="list-inline-item mb-3">
+                                                <a class="badge text-bg-primary" href="{{ parent_page_url }}phase/{{ research_lifecycle_phase_addition.phase.slug }}">
+                                                    {{research_lifecycle_phase_addition.phase.name}}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </dd>
+                            {% endif %}
                         {# CATEGORIES #}
-                        {% if page.service_category_additions.all %}
-                                    <dt class="col-sm-3 col-lg-2">Category</dt>
-                                    <dd class="col-sm-9 col-lg-10">
-                                        <ul class="list-inline">
-                                            {% for service_addition in page.service_category_additions.all %}
-                                                <li class="list-inline-item">
-                                                    <a class="btn btn-sm btn-secondary" href="{{ parent_page_url }}category/{{ service_addition.category.slug }}">
-                                                        <i class="fa-solid fa-tag"></i>
-                                                        {{service_addition.category.name}}
-                                                    </a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </dd>
-                        {% endif %}
+                            {% if page.service_category_additions.all %}
+                                <dt class="col-sm-3 col-lg-2">Category</dt>
+                                <dd class="col-sm-9 col-lg-10">
+                                    <ul class="list-inline">
+                                        {% for service_addition in page.service_category_additions.all %}
+                                            <li class="list-inline-item mb-3">
+                                                <a class="badge" href="{{ parent_page_url }}category/{{ service_addition.category.slug }}">
+                                                    {{service_addition.category.name}}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </dd>
+                            {% endif %}
                         {# DIVISION division_additions #}
-                        {% if page.division_additions.all %}
-                                    <dt class="col-sm-3 col-lg-2">Division</dt>
-                                    <dd class="col-sm-9 col-lg-10">
-                                        <ul class="list-unstyled">
-                                            {% for division_addition in page.division_additions.all %}
-                                                <li class="list-inline-item">
+                            {% if page.division_additions.all %}
+                                <dt class="col-sm-3 col-lg-2">Division</dt>
+                                <dd class="col-sm-9 col-lg-10">
+                                    <ul class="list-unstyled">
+                                        {% for division_addition in page.division_additions.all %}
+                                            <li class="list-inline-item">
                                                     {% comment %} <a class="" href="{{ parent_page_url }}division/{{ division_addition.division.slug }}"> {% endcomment %}
-                                                    <a class="" href="{{ division_addition.division.url }}">
+                                                <a class="" href="{{ division_addition.division.url }}">
                                                         {% comment %} <i class="fa-solid fa-building"></i> {% endcomment %}
-                                                        {{division_addition.division.name}}
-                                                    </a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </dd>
-                        {% endif %}
+                                                    {{division_addition.division.name}}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </dd>
+                            {% endif %}
                         {# FUNDER POLICIES funder_policy_additions #}
-                        {% if page.funder_policy_additions.all %}
-                                    <dt class="col-sm-3 col-lg-2">Funder Policy</dt>
-                                    <dd class="col-sm-9 col-lg-10">
-                                        <ul class="list-unstyled">
-                                            {% for funder_policy_addition in page.funder_policy_additions.all %}
-                                                <li class="list-inline-item">
-                                                    <a class="" href="{{ funder_policy_addition.funder_policy.url }}">
+                            {% if page.funder_policy_additions.all %}
+                                <dt class="col-sm-3 col-lg-2">Funder Policy</dt>
+                                <dd class="col-sm-9 col-lg-10">
+                                    <ul class="list-unstyled">
+                                        {% for funder_policy_addition in page.funder_policy_additions.all %}
+                                            <li class="list-inline-item">
+                                                <a class="" href="{{ funder_policy_addition.funder_policy.url }}">
                                                         {% comment %} <i class="fa-solid fa-hands-holding-circle"></i> {% endcomment %}
-                                                        {{funder_policy_addition.funder_policy.name}}
-                                                    </a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </dd>
-                        {% endif %}
-                    </dl>
-                {% endwith %}
+                                                    {{funder_policy_addition.funder_policy.name}}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </dd>
+                            {% endif %}
+                        </dl>
+                    {% endwith %}
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 {% endblock content %}
 
 {% if ".uchicago.edu" in request.get_host %}
-{% block extra_scripts %}
-<script>
-    document.getElementById('service_click_button').addEventListener('click', function() {
-        var eventLabel = this.getAttribute('data-event-label');
-        gtag('event', 'service_click', {
-            'event_label': eventLabel
-        });
-    });
-</script>
-{% endblock extra_scripts %}
+    {% block extra_scripts %}
+        <script>
+            document.getElementById('service_click_button').addEventListener('click', function() {
+                var eventLabel = this.getAttribute('data-event-label');
+                gtag('event', 'service_click', {
+                    'event_label': eventLabel
+                });
+            });
+        </script>
+    {% endblock extra_scripts %}
 {% else %}
   <!-- DEV mode, no GA4 script -->
 {% endif %}
