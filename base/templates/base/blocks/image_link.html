@@ -1,5 +1,5 @@
 {% load wagtailimages_tags %}
-{% image value.link_image height-200 as thumbnail %}
+{% image value.link_image height-300 as thumbnail %}
 <div class="col-12 col-sm-6 col-md-4 mx-auto" >
     <div class="linked-image text-bg-dark white-links position-relative mb-3 mx-auto" style="background-image: url('{{ thumbnail.url }}')">
         {% comment %} {% if value.link_image %} 
