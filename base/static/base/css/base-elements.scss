@@ -134,7 +134,7 @@ img.richtext-image.right{
         background: var(--bs-secondary-bg-subtle);
     }
 }
-.template-service-page{
+.template-service-page {
     .badge{
         // Category badges (secondary style)
         color: var(--bs-secondary-color);
@@ -144,7 +144,7 @@ img.richtext-image.right{
         }
         // Phase badges with primary background
         &.text-bg-primary{
-            color: #fff;
+            color: var(--bs-white);
             background: var(--bs-primary);
             &:hover{
                 opacity: 0.9;
