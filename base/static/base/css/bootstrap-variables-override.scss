@@ -8,9 +8,10 @@
     $dark: #343a40; // Custom dark color
 
     $link-color: #007396;
+    $link-hover-color: darken($link-color, 15%);
 
     $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
-    
+
     $h1-font-size: $font-size-base * 3 !default;
     $h2-font-size: $font-size-base * 2.5 !default;
     $h3-font-size: $font-size-base * 2 !default;
@@ -24,14 +25,14 @@
     // $headings-line-height:        1.2 !default;
     // $headings-color:              inherit !default; 
 
-    $focus-ring-width:      .25rem;
-    $focus-ring-opacity:    .85;
-    $focus-ring-color:      rgba($info, $focus-ring-opacity);
-    $focus-ring-blur:       0;
+    $focus-ring-width: .25rem;
+    $focus-ring-opacity: .85;
+    $focus-ring-color: rgba($info, $focus-ring-opacity);
+    $focus-ring-blur: 0;
     $focus-ring-box-shadow: 0 0 $focus-ring-blur $focus-ring-width $focus-ring-color;
 
     $breadcrumb-divider: quote(">");
-    
-    $pagination-active-color:           var(--bs-body-color);
-    $pagination-active-bg:              var(--bs-body-bg);
-    $pagination-active-border-color:    var(--bs-border-color);
+
+    $pagination-active-color: var(--bs-body-color);
+    $pagination-active-bg: var(--bs-body-bg);
+    $pagination-active-border-color: var(--bs-border-color);
