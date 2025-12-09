@@ -243,7 +243,14 @@ InteractiveDiagram.panels = [
                   '<strong>Fill Color</strong> - Hex color code for the shape background (e.g., #800000 for maroon). </br>'
                   '<strong>Text Color</strong> - Hex color code for the text (e.g., #ffffff for white). </br>'
                   '</br>'
-                  '<strong>To revert to defaults:</strong> Clear all fields in a phase and save - the default values will be restored automatically on the next page load.',
+                  '<strong>Default Values:</strong></br>'
+                  '1. Plan & Design: /research-lifecycle/plan-design/ | #800000 | #ffffff</br>'
+                  '2. Collect & Create: /research-lifecycle/collect-create/ | #a9431e | #ffffff</br>'
+                  '3. Analyze & Collaborate: /research-lifecycle/analyze-collaborate/ | #404040 | #ffffff</br>'
+                  '4. Evaluate & Archive: /research-lifecycle/evaluate-archive/ | #a9431e | #ffffff</br>'
+                  '5. Share: /research-lifecycle/share/ | #404040 | #ffffff</br>'
+                  '6. Publish & Reuse: /research-lifecycle/publish-reuse/ | #a9431e | #ffffff</br>'
+                  '7. Store & Manage: /research-lifecycle/store-manage/ | #d9d9d9 | #000000',
     ),
     MultiFieldPanel(
         [
@@ -367,6 +374,7 @@ class StandardPage(AbstractBasePage):
     )
 
     content_panels = AbstractBasePage.content_panels + [
+        FieldPanel('show_interactive_diagram', icon='repeat'),
         MultiFieldPanel(
             [
                 FieldPanel('show_nested_children'),
@@ -375,7 +383,6 @@ class StandardPage(AbstractBasePage):
             heading='Dynamic Page Listing',
         ),
         FieldPanel('associated_research_lifecycle_phase'),
-        FieldPanel('show_interactive_diagram'),
     ]
 
     def get_context(self, request):

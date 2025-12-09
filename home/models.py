@@ -64,8 +64,7 @@ class HomePage(AbstractBasePage):
     content_panels = (
         AbstractBasePage.content_panels[:1]
         + [
-            FieldPanel('sections'),
-            FieldPanel('show_interactive_diagram'),
+            FieldPanel('show_interactive_diagram', icon='repeat'),
         ]
         + [
             MultiFieldPanel(
@@ -84,6 +83,9 @@ class HomePage(AbstractBasePage):
             ),
         ]
         + AbstractBasePage.content_panels[1:]
+        + [
+            FieldPanel('sections'),
+        ]
         
     )
 
