@@ -53,8 +53,20 @@ class HomePage(AbstractBasePage):
         blank=True,
     )
 
+    show_interactive_diagram = models.BooleanField(
+        default=False,
+        verbose_name="Show Interactive Diagram",
+        help_text="Check this box to display the interactive research data lifecycle diagram on this page. "
+        "The diagram is customizable in Settings > Interactive Diagram Settings. "
+        "This interactive diagram provides an accessible, visual representation of the research lifecycle phases.",
+    )
+
     content_panels = (
         AbstractBasePage.content_panels[:1]
+        + [
+            FieldPanel('sections'),
+            FieldPanel('show_interactive_diagram'),
+        ]
         + [
             MultiFieldPanel(
                 [
@@ -72,9 +84,7 @@ class HomePage(AbstractBasePage):
             ),
         ]
         + AbstractBasePage.content_panels[1:]
-        + [
-            FieldPanel('sections'),
-        ]
+        
     )
 
     subpage_types = [

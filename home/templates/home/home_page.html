@@ -38,6 +38,9 @@
             </div>
         </section>
     {% endif %}
+    {% if page.show_interactive_diagram %}
+        {% include "base/includes/interactive_diagram.html" %}
+    {% endif %}
 
     {% include "base/includes/body.html" with center_body=True %}
 

@@ -22,6 +22,12 @@
         <div class="container-sm pb-5"></div>
     {% endif %}
     
+    {% if page.show_interactive_diagram %}
+        <div class="container-sm py-5">
+            {% include "base/includes/interactive_diagram.html" %}
+        </div>
+    {% endif %}
+    
     {% if page.show_nested_children and page.get_children.live.in_menu.exists %}
         {% include "base/includes/child_pages_listing.html" %}
     {% endif %}
