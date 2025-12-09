@@ -64,9 +64,6 @@ class HomePage(AbstractBasePage):
     content_panels = (
         AbstractBasePage.content_panels[:1]
         + [
-            FieldPanel('show_interactive_diagram', icon='repeat'),
-        ]
-        + [
             MultiFieldPanel(
                 [
                     FieldPanel('cta_heading'),
@@ -81,6 +78,9 @@ class HomePage(AbstractBasePage):
                 heading='Call to Action Section (CTA)',
                 help_text="Needs an image, a heading, text, or button link to be visible.",
             ),
+        ]
+        + [
+            FieldPanel('show_interactive_diagram', icon='rotate'),
         ]
         + AbstractBasePage.content_panels[1:]
         + [

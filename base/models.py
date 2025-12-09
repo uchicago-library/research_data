@@ -187,7 +187,7 @@ DIAGRAM_PHASES = [
 ]
 
 
-@register_setting
+@register_setting(icon='rotate')
 class InteractiveDiagram(BaseGenericSetting):
     """
     Settings for the interactive diagram displayed on pages.
@@ -219,7 +219,6 @@ class InteractiveDiagram(BaseGenericSetting):
     class Meta:
         verbose_name = "Interactive Diagram Settings"
         verbose_name_plural = "Interactive Diagram Settings"
-
 
 # Dynamically add phase fields to the InteractiveDiagram model
 for phase_num, phase_name, default_text, default_link, default_fill, default_text_color in DIAGRAM_PHASES:
@@ -272,9 +271,6 @@ InteractiveDiagram.panels = [
     )
     for phase_num, phase_name, _, _, _, _ in DIAGRAM_PHASES
 ]
-
-# Add icon to the settings menu
-InteractiveDiagram.icon = 'repeat'
 
 
 class DefaultBodyFields(StreamBlock):
@@ -373,17 +369,19 @@ class StandardPage(AbstractBasePage):
         "This interactive diagram provides an accessible, visual representation of the research lifecycle phases.",
     )
 
-    content_panels = AbstractBasePage.content_panels + [
-        FieldPanel('show_interactive_diagram', icon='repeat'),
-        MultiFieldPanel(
+    content_panels = (
+        AbstractBasePage.content_panels[:1]
+        + [ FieldPanel('show_interactive_diagram', icon='rotate'), ]
+        + AbstractBasePage.content_panels[1:]
+        + [ MultiFieldPanel(
             [
                 FieldPanel('show_nested_children'),
                 FieldPanel('nested_children_depth'),
             ],
             heading='Dynamic Page Listing',
-        ),
-        FieldPanel('associated_research_lifecycle_phase'),
-    ]
+        ),]
+        + [ FieldPanel('associated_research_lifecycle_phase'), ]
+    )
 
     def get_context(self, request):
         """
