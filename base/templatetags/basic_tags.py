@@ -15,6 +15,15 @@ def limit(value, arg):
         return value
 
 
+@register.filter
+def has_h2_block(body):
+    """Check if a StreamField body contains an h2 block."""
+    for block in body:
+        if block.block_type == 'h2':
+            return True
+    return False
+
+
 @register.simple_tag(takes_context=True)
 def render_nested_pages(context, page, max_depth=1, current_depth=1):
     """Recursive template tag for displaying a sitemap for a section
