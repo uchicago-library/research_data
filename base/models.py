@@ -145,48 +145,6 @@ class FloatingFooterButton(BaseGenericSetting, FloatingButton):
     pass
 
 
-def create_diagram_phase_fields(phase_num, phase_name, default_text, default_link, default_fill, default_text_color):
-    """
-    Helper function to create the four fields for a diagram phase.
-    Returns a dictionary of field_name: field_instance.
-    """
-    fields = {}
-    
-    fields[f'phase{phase_num}_text'] = models.CharField(
-        max_length=100,
-        default=default_text,
-    )
-    
-    fields[f'phase{phase_num}_link'] = models.CharField(
-        max_length=255,
-        default=default_link,
-    )
-    
-    fields[f'phase{phase_num}_fill_color'] = models.CharField(
-        max_length=7,
-        default=default_fill,
-    )
-    
-    fields[f'phase{phase_num}_text_color'] = models.CharField(
-        max_length=7,
-        default=default_text_color,
-    )
-    
-    return fields
-
-
-# Define the 7 phases with their default values
-DIAGRAM_PHASES = [
-    (1, "Plan and Design", "Plan & Design", "/research-lifecycle/plan-design/", "#800000", "#ffffff"),
-    (2, "Collect and Create", "Collect & Create", "/research-lifecycle/collect-create/", "#a9431e", "#ffffff"),
-    (3, "Analyze and Collaborate", "Analyze & Collaborate", "/research-lifecycle/analyze-collaborate/", "#404040", "#ffffff"),
-    (4, "Evaluate and Archive", "Evaluate & Archive", "/research-lifecycle/evaluate-archive/", "#a9431e", "#ffffff"),
-    (5, "Share", "Share", "/research-lifecycle/share/", "#404040", "#ffffff"),
-    (6, "Publish and Reuse", "Publish & Reuse", "/research-lifecycle/publish-reuse/", "#a9431e", "#ffffff"),
-    (7, "Store and Manage", "Store & Manage", "/research-lifecycle/store-manage/", "#d9d9d9", "#000000"),
-]
-
-
 @register_setting(icon='rotate')
 class InteractiveDiagram(BaseGenericSetting):
     """
@@ -216,61 +174,229 @@ class InteractiveDiagram(BaseGenericSetting):
         help_text="Font size for diagram text in pixels. Recommended range: 10.0 to 18.0, but any value is allowed.",
     )
 
+    # Phase 1: Plan and Design
+    phase1_text = models.CharField(
+        max_length=100,
+        default="Plan & Design",
+    )
+    phase1_link = models.CharField(
+        max_length=255,
+        default="/research-lifecycle/plan-design/",
+    )
+    phase1_fill_color = models.CharField(
+        max_length=7,
+        default="#800000",
+    )
+    phase1_text_color = models.CharField(
+        max_length=7,
+        default="#ffffff",
+    )
+
+    # Phase 2: Collect and Create
+    phase2_text = models.CharField(
+        max_length=100,
+        default="Collect & Create",
+    )
+    phase2_link = models.CharField(
+        max_length=255,
+        default="/research-lifecycle/collect-create/",
+    )
+    phase2_fill_color = models.CharField(
+        max_length=7,
+        default="#a9431e",
+    )
+    phase2_text_color = models.CharField(
+        max_length=7,
+        default="#ffffff",
+    )
+
+    # Phase 3: Analyze and Collaborate
+    phase3_text = models.CharField(
+        max_length=100,
+        default="Analyze & Collaborate",
+    )
+    phase3_link = models.CharField(
+        max_length=255,
+        default="/research-lifecycle/analyze-collaborate/",
+    )
+    phase3_fill_color = models.CharField(
+        max_length=7,
+        default="#404040",
+    )
+    phase3_text_color = models.CharField(
+        max_length=7,
+        default="#ffffff",
+    )
+
+    # Phase 4: Evaluate and Archive
+    phase4_text = models.CharField(
+        max_length=100,
+        default="Evaluate & Archive",
+    )
+    phase4_link = models.CharField(
+        max_length=255,
+        default="/research-lifecycle/evaluate-archive/",
+    )
+    phase4_fill_color = models.CharField(
+        max_length=7,
+        default="#a9431e",
+    )
+    phase4_text_color = models.CharField(
+        max_length=7,
+        default="#ffffff",
+    )
+
+    # Phase 5: Share
+    phase5_text = models.CharField(
+        max_length=100,
+        default="Share",
+    )
+    phase5_link = models.CharField(
+        max_length=255,
+        default="/research-lifecycle/share/",
+    )
+    phase5_fill_color = models.CharField(
+        max_length=7,
+        default="#404040",
+    )
+    phase5_text_color = models.CharField(
+        max_length=7,
+        default="#ffffff",
+    )
+
+    # Phase 6: Publish and Reuse
+    phase6_text = models.CharField(
+        max_length=100,
+        default="Publish & Reuse",
+    )
+    phase6_link = models.CharField(
+        max_length=255,
+        default="/research-lifecycle/publish-reuse/",
+    )
+    phase6_fill_color = models.CharField(
+        max_length=7,
+        default="#a9431e",
+    )
+    phase6_text_color = models.CharField(
+        max_length=7,
+        default="#ffffff",
+    )
+
+    # Phase 7: Store and Manage
+    phase7_text = models.CharField(
+        max_length=100,
+        default="Store & Manage",
+    )
+    phase7_link = models.CharField(
+        max_length=255,
+        default="/research-lifecycle/store-manage/",
+    )
+    phase7_fill_color = models.CharField(
+        max_length=7,
+        default="#d9d9d9",
+    )
+    phase7_text_color = models.CharField(
+        max_length=7,
+        default="#000000",
+    )
+
+    panels = [
+        HelpPanel(
+            content='This page allows to customize the interactive research data lifecycle diagram. <br>'
+                'This can be shown on the home page or on any standard page by checking the "Show Interactive Diagram" box. <br>'
+                'The diagram is made up of seven shapes and cannot be changed in number or shape. <br>'
+                '<br>'
+                'Some customization is possible through the fields below, but test them thoroughly for readability and accessibility, including the hover effect. '
+                'The default colors are chosen for good contrast, and to be distinguishible for color-blind users. '
+                'Each phase below has four fields: <br>'
+                      '<strong>Text</strong> - Keep short to fit in the diagram box. <br>'
+                      '<strong>Link</strong> - Format as /path/to/page/ for internal links or https://example.com for external links. <br>'
+                      '<strong>Fill Color</strong> - Hex color code for the shape background (e.g., #800000 for maroon). <br>'
+                      '<strong>Text Color</strong> - Hex color code for the text (e.g., #ffffff for white).',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('title'),
+                FieldPanel('description'),
+            ],
+            heading='Accessibility Settings (Required)',
+        ),
+        FieldPanel('font_size'),
+        MultiFieldPanel(
+            [
+                FieldPanel('phase1_text'),
+                FieldPanel('phase1_link'),
+                FieldPanel('phase1_fill_color'),
+                FieldPanel('phase1_text_color'),
+            ],
+            heading='Phase 1',
+            help_text='Defaults: Plan & Design | /research-lifecycle/plan-design/ | #800000 | #ffffff',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('phase2_text'),
+                FieldPanel('phase2_link'),
+                FieldPanel('phase2_fill_color'),
+                FieldPanel('phase2_text_color'),
+            ],
+            heading='Phase 2',
+            help_text='Defaults: Collect & Create | /research-lifecycle/collect-create/ | #a9431e | #ffffff',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('phase3_text'),
+                FieldPanel('phase3_link'),
+                FieldPanel('phase3_fill_color'),
+                FieldPanel('phase3_text_color'),
+            ],
+            heading='Phase 3',
+            help_text='Defaults: Analyze & Collaborate | /research-lifecycle/analyze-collaborate/ | #404040 | #ffffff',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('phase4_text'),
+                FieldPanel('phase4_link'),
+                FieldPanel('phase4_fill_color'),
+                FieldPanel('phase4_text_color'),
+            ],
+            heading='Phase 4',
+            help_text='Defaults: Evaluate & Archive | /research-lifecycle/evaluate-archive/ | #a9431e | #ffffff',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('phase5_text'),
+                FieldPanel('phase5_link'),
+                FieldPanel('phase5_fill_color'),
+                FieldPanel('phase5_text_color'),
+            ],
+            heading='Phase 5',
+            help_text='Defaults: Share | /research-lifecycle/share/ | #404040 | #ffffff',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('phase6_text'),
+                FieldPanel('phase6_link'),
+                FieldPanel('phase6_fill_color'),
+                FieldPanel('phase6_text_color'),
+            ],
+            heading='Phase 6',
+            help_text='Defaults: Publish & Reuse | /research-lifecycle/publish-reuse/ | #a9431e | #ffffff',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('phase7_text'),
+                FieldPanel('phase7_link'),
+                FieldPanel('phase7_fill_color'),
+                FieldPanel('phase7_text_color'),
+            ],
+            heading='Phase 7 (center)',
+            help_text='Defaults: Store & Manage | /research-lifecycle/store-manage/ | #d9d9d9 | #000000',
+        ),
+    ]
+
     class Meta:
         verbose_name = "Interactive Diagram Settings"
         verbose_name_plural = "Interactive Diagram Settings"
-
-# Dynamically add phase fields to the InteractiveDiagram model
-for phase_num, phase_name, default_text, default_link, default_fill, default_text_color in DIAGRAM_PHASES:
-    phase_fields = create_diagram_phase_fields(phase_num, phase_name, default_text, default_link, default_fill, default_text_color)
-    for field_name, field_instance in phase_fields.items():
-        field_instance.contribute_to_class(InteractiveDiagram, field_name)
-
-
-# Build the panels dynamically
-InteractiveDiagram.panels = [
-    HelpPanel(
-        content='This page allows to customize the interactive research data lifecycle diagram. </br>'
-            'This can be shown on the home page or on any standard page by checking the "Show Interactive Diagram" box. </br>'
-            'The diagram is made up of seven shapes and cannot be changed in number or shape. </br>'
-            '</br>'
-            'Some customization is possible through the fields below, but test them thoroughly for readability and accessibility, including the hover effect. '
-            'The default colors are chosen for good contrast, and to be distinguishible for color-blind users. '
-            'Each phase below has four fields: </br>'
-                  '<strong>Text</strong> - Keep short to fit in the diagram box. </br>'
-                  '<strong>Link</strong> - Format as /path/to/page/ for internal links or https://example.com for external links. </br>'
-                  '<strong>Fill Color</strong> - Hex color code for the shape background (e.g., #800000 for maroon). </br>'
-                  '<strong>Text Color</strong> - Hex color code for the text (e.g., #ffffff for white). </br>'
-                  '</br>'
-                  '<strong>Default Values:</strong></br>'
-                  '1. Plan & Design: /research-lifecycle/plan-design/ | #800000 | #ffffff</br>'
-                  '2. Collect & Create: /research-lifecycle/collect-create/ | #a9431e | #ffffff</br>'
-                  '3. Analyze & Collaborate: /research-lifecycle/analyze-collaborate/ | #404040 | #ffffff</br>'
-                  '4. Evaluate & Archive: /research-lifecycle/evaluate-archive/ | #a9431e | #ffffff</br>'
-                  '5. Share: /research-lifecycle/share/ | #404040 | #ffffff</br>'
-                  '6. Publish & Reuse: /research-lifecycle/publish-reuse/ | #a9431e | #ffffff</br>'
-                  '7. Store & Manage: /research-lifecycle/store-manage/ | #d9d9d9 | #000000',
-    ),
-    MultiFieldPanel(
-        [
-            FieldPanel('title'),
-            FieldPanel('description'),
-        ],
-        heading='Accessibility Settings (Required)',
-    ),
-    FieldPanel('font_size'),
-] + [
-    MultiFieldPanel(
-        [
-            FieldPanel(f'phase{phase_num}_text'),
-            FieldPanel(f'phase{phase_num}_link'),
-            FieldPanel(f'phase{phase_num}_fill_color'),
-            FieldPanel(f'phase{phase_num}_text_color'),
-        ],
-        heading=f'Phase {phase_num}: {phase_name}',
-    )
-    for phase_num, phase_name, _, _, _, _ in DIAGRAM_PHASES
-]
 
 
 class DefaultBodyFields(StreamBlock):
