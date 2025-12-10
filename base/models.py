@@ -1,4 +1,3 @@
-# from django.db import models
 from django.db import models
 from wagtail.admin.panels import FieldPanel, HelpPanel, MultiFieldPanel, PageChooserPanel
 from wagtail.blocks import (
@@ -130,17 +129,17 @@ class FloatingButton(LinkFields):
         abstract = True
 
 
-@register_setting
+@register_setting(icon='image')
 class MainLogo(BaseGenericSetting, Logo):
     pass
 
 
-@register_setting
+@register_setting(icon='image')
 class FooterLogo(BaseGenericSetting, Logo):
     pass
 
 
-@register_setting
+@register_setting(icon='comment')
 class FloatingFooterButton(BaseGenericSetting, FloatingButton):
     pass
 
