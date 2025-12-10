@@ -164,7 +164,7 @@ class InteractiveDiagram(BaseGenericSetting):
         "just as the research process is iterative, so too is the research data lifecycle: "
         "each component builds upon the next, and moving between phases is a natural part "
         "of the overall research process.",
-        help_text="Mandatory description for accessibility purposes. This will be read by screen readers.",
+        help_text="Mandatory description for accessibility purposes. This will be read by screen readers. Consider including information that is passed visually in the diagram.",
     )
 
     font_size = models.DecimalField(
