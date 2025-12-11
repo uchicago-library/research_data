@@ -8,12 +8,17 @@
 
 {% block content %}
 
-    {% if not page.body and not services %}
+    {% if not page.body and not services and not page.show_interactive_diagram%}
         {% if not page.show_nested_children or not page.get_children.live.in_menu.exists %}
             <div class="container-sm py-5">
                 <p class="lead">No content to display</p>
             </div>
         {% endif %}
+    {% endif %}
+    {% if page.show_interactive_diagram %}
+        <div class="container-sm py-5">
+            {% include "base/includes/interactive_diagram.html" %}
+        </div>
     {% endif %}
 
     {% if page.body %}
@@ -21,6 +26,7 @@
     {% else %}
         <div class="container-sm pb-5"></div>
     {% endif %}
+    
     
     {% if page.show_nested_children and page.get_children.live.in_menu.exists %}
         {% include "base/includes/child_pages_listing.html" %}

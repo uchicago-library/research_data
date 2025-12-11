@@ -6,7 +6,7 @@ from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.fields import RichTextField
 
 
-@register_setting
+@register_setting(icon='calendar-alt')
 class NewsListingSettings(BaseSiteSetting):
     paginate_by = models.PositiveSmallIntegerField(
         null=True, blank=True, help_text="Defaults to 5 when not set."

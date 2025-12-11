@@ -1,0 +1,89 @@
+{% load wagtailcore_tags %}
+{% load wagtailsettings_tags %}
+{% get_settings %}
+
+<section style="display: flex; align-items: center; justify-content: center;">
+    <h2 class="visually-hidden">{{ settings.base.InteractiveDiagram.title }}</h2>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 300 300" role="group" aria-labelledby="lifecycle-title lifecycle-desc" style="min-width: 250px; max-width: 500px; padding: 24px 12px;">
+        <title id="lifecycle-title">{{ settings.base.InteractiveDiagram.title }}</title>
+        <desc id="lifecycle-desc">{{ settings.base.InteractiveDiagram.description }}</desc>
+        <style type="text/css">
+            @import url('https://uchicago-brand-fonts.s3.us-east-2.amazonaws.com/UChicagoSansSerif.css');
+            g a{
+                text-decoration: none;
+            }
+            g a:hover path{
+                fill: #000;
+            }
+            g a:focus path{
+                fill: #000;
+                stroke: #2196F3;
+                stroke-width: 3px;
+            }
+            g a:hover circle{
+                fill: #a6a6a6;
+            }
+            g a:focus circle{
+                fill: #a6a6a6;
+                stroke: #2196F3;
+                stroke-width: 3px;
+            }
+            g text{
+                font-family: "UChicago Sans Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: {{ settings.base.InteractiveDiagram.font_size }}px;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                pointer-events: none;
+            }
+        </style>
+        
+        <g id="plan-and-design-phase">
+            <a href="{{ settings.base.InteractiveDiagram.phase1_link }}" tabindex="0">
+                <path d="M157.5,40.1l-17.8,44.5c13.8-2.2,28.5,0,41.7,7.1,5.7,3.1,10.7,6.9,15.1,11.2l48.5-7,22.4-39.2c-12.3-15.5-27.8-28.8-46.3-38.8C193.7,3.1,163.6-2.2,134.6.8l22.9,39.3Z" fill="{{ settings.base.InteractiveDiagram.phase1_fill_color }}"/>
+                <text transform="translate(175.4 53.7)" fill="{{ settings.base.InteractiveDiagram.phase1_text_color }}"><tspan x="0" y="0">Plan &amp;</tspan><tspan x="-2.5" y="16">Design</tspan></text>
+            </a>
+        </g>
+
+        <g id="collect-and-create-phase">
+            <a href="{{ settings.base.InteractiveDiagram.phase2_link }}" tabindex="0">
+                <path d="M248.9,101.5l-47.4,6.9c13.1,16.2,17.9,37.9,12.5,58.4l30.4,38.5,45.1-.2c19.3-48.5,11.4-102.5-17.9-143.1l-22.6,39.5Z" fill="{{ settings.base.InteractiveDiagram.phase2_fill_color }}"/>
+                <text transform="translate(229.1 144.8)" fill="{{ settings.base.InteractiveDiagram.phase2_text_color }}"><tspan x="0" y="0">Collect</tspan><tspan x="-6.4" y="16">&amp; Create</tspan></text>
+            </a>
+        </g>
+
+        <g id="analyze-and-collaborate-phase">
+            <a href="{{ settings.base.InteractiveDiagram.phase3_link }}" tabindex="0">
+                <path d="M241.4,211.4l-29.7-37.6c-1,2.6-2.2,5.1-3.5,7.7-9,16.6-24,27.8-40.8,32.4l-18.2,45.6,22.7,39c45.1-6.7,86.7-33.9,110-77.1,1.8-3.3,3.4-6.6,4.9-10l-45.5.2Z" fill="{{ settings.base.InteractiveDiagram.phase3_fill_color }}"/>
+                <text transform="translate(168.6 237.9)" fill="{{ settings.base.InteractiveDiagram.phase3_text_color }}"><tspan x="0" y="0">Analyze &amp;</tspan><tspan x="-7" y="16">Collaborate</tspan></text>
+            </a>
+        </g>
+
+        <g id="evaluate-and-archive-phase">
+            <a href="{{ settings.base.InteractiveDiagram.phase4_link }}" tabindex="0">
+                <path d="M142.5,259.9l17.8-44.5c-13.8,2.2-28.5,0-41.7-7.1-5.7-3.1-10.7-6.9-15.1-11.2l-48.5,7-22.4,39.2c12.3,15.5,27.8,28.8,46.3,38.8,27.6,14.9,57.7,20.2,86.7,17.2l-22.9-39.3Z" fill="{{ settings.base.InteractiveDiagram.phase4_fill_color }}"/>
+                <text transform="translate(57.3 237.9)" fill="{{ settings.base.InteractiveDiagram.phase4_text_color }}"><tspan x="0" y="0">Evaluate </tspan><tspan x="-1.3" y="16">&amp; Archive</tspan></text>
+            </a>
+        </g>
+
+        <g id="share-phase">
+            <a href="{{ settings.base.InteractiveDiagram.phase5_link }}" tabindex="0">
+                <path d="M51.1,198.5l47.4-6.9c-13.1-16.2-17.9-37.9-12.5-58.4l-30.4-38.5-45.1.2C-8.8,143.3-.9,197.3,28.4,237.9l22.6-39.5Z" fill="{{ settings.base.InteractiveDiagram.phase5_fill_color }}"/>
+                <text transform="translate(18.7 152.8)" fill="{{ settings.base.InteractiveDiagram.phase5_text_color }}"><tspan x="0" y="0">Share</tspan></text>
+            </a>
+        </g>
+
+        <g id="publish-and-reuse-phase">
+            <a href="{{ settings.base.InteractiveDiagram.phase6_link }}" tabindex="0">
+                <path d="M58.6,88.6l29.7,37.6c1-2.6,2.2-5.1,3.5-7.7,9-16.6,24-27.8,40.8-32.4l18.2-45.6L128,1.6C82.9,8.3,41.4,35.5,18,78.7c-1.8,3.3-3.4,6.6-4.9,10l45.5-.2Z" fill="{{ settings.base.InteractiveDiagram.phase6_fill_color }}"/>
+                <text transform="translate(58.8 53.7)" fill="{{ settings.base.InteractiveDiagram.phase6_text_color }}"><tspan x="0" y="0">Publish</tspan><tspan x="-2.2" y="16">&amp; Reuse</tspan></text>
+            </a>
+        </g>
+
+        <g id="store-and-manage-phase">
+            <a href="{{ settings.base.InteractiveDiagram.phase7_link }}" tabindex="0">
+                <circle cx="150" cy="150" r="60.2" fill="{{ settings.base.InteractiveDiagram.phase7_fill_color }}"/>
+                <text transform="translate(120.8 144.8)" fill="{{ settings.base.InteractiveDiagram.phase7_text_color }}"><tspan><tspan x="0" y="0">Store &amp;</tspan></tspan><tspan><tspan x="-3" y="16">Manage</tspan></tspan></text>
+            </a>
+        </g>
+    </svg>
+</section>
