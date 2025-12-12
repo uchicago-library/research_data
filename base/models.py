@@ -158,12 +158,13 @@ class InteractiveDiagram(BaseGenericSetting):
     )
 
     description = models.TextField(
-        default="The research data lifecycle represents the phases of the research data process. "
-        "The research data lifecycle is one part of the overall research process, and, "
-        "just as the research process is iterative, so too is the research data lifecycle: "
-        "each component builds upon the next, and moving between phases is a natural part "
-        "of the overall research process.",
-        help_text="Mandatory description for accessibility purposes. This will be read by screen readers. Consider including information that is passed visually in the diagram.",
+        default="""This diagram represents a continuous research data lifecycle composed of seven sequential phases arranged in a circle, 
+        while the seventh phase is centered within the circle and present throughout.
+        Each wedge is a button that leads to a detailed page for that phase. 
+        The circular layout communicates that once the final phase is reached, the process loops back to the first.
+        """,
+        help_text="Mandatory description for accessibility purposes. This will be read by screen readers. "
+        "Describe the purpose and meaning of the diagram's visual concepts.",
     )
 
     font_size = models.DecimalField(
